@@ -33,7 +33,7 @@ const MoviePage: React.FC= () => {
         return res.json();
       })
       .then((movie) => {
-        // console.log(movie)
+        console.log(movie)
         setMovie(movie);
       });
   }, [id]);
