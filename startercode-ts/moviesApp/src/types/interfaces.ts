@@ -60,3 +60,9 @@ export interface BaseMovieProps {
     content: string
     author: string
   }
+  export interface UpcommingMovies {
+    page: number;	
+    total_pages: number;
+    total_results: number;
+    results: BaseMovieProps[];
+  }
