@@ -41,12 +41,10 @@ export const getMovies = () => {
       });
   };
 
-  export const getUpcomingMovies = () => {
+  export const getUpcomingMovies = (language = 'en-US') => {
     return fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1" +
-        import.meta.env.VITE_TMDB_KEY +
-        "&language=en-US"
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${import.meta.env.VITE_TMDB_KEY}&language=${language}&include_adult=false&page=1`
     )
       .then(res => res.json())
-      .then(json => json.upcoming);
+      .then(json => json.results);
   };
