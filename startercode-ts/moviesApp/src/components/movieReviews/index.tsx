@@ -9,7 +9,6 @@ import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 import { getMovieReviews } from "../../api/tmdb-api";
 import { excerpt } from "../../util";
-
 import { MovieDetailsProps, Review } from "../../types/interfaces"; // Import the MovieT type from the appropriate location
 
 const styles = {
@@ -40,14 +39,14 @@ const MovieReviews: React.FC<MovieDetailsProps> = (movie) => {
                 </TableHead>
                 <TableBody>
                     {reviews.map((r: Review) => (
-                        <TableRow key={r.id}>
+                        <TableRow key={r.movieId}>
                             <TableCell component="th" scope="row">
                                 {r.author}
                             </TableCell>
                             <TableCell >{excerpt(r.content)}</TableCell>
                             <TableCell >
                                 <Link
-                                    to={`/reviews/${r.id}`}
+                                    to={`/reviews/${r.movieId}`}
                                     state={{
                                         review: r,
                                         movie: movie,
