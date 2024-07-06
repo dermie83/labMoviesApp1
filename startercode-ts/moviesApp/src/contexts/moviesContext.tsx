@@ -7,16 +7,18 @@ interface MovieContextInterface {
     addToFavourites: ((movie: BaseMovieProps) => void);
     removeFromFavourites: ((movie: BaseMovieProps) => void);
     addReview: ((movie: BaseMovieProps, review: Review) => void);
-    playList: number[];
-    addToPlayList: ((movie: BaseMovieProps) => void);
+    mustWatch: number[];
+    addToMustWatch: ((movie: BaseMovieProps) => void);
+    removeFromMustWatch: ((movie: BaseMovieProps) => void);
 }
 const initialContextState: MovieContextInterface = {
     favourites: [],
     addToFavourites: () => { },
     removeFromFavourites: () => { },
     addReview: (movie, review) => { movie.id, review},
-    playList: [],
-    addToPlayList: () => { },
+    mustWatch: [],
+    addToMustWatch: () => { },
+    removeFromMustWatch: () => { },
 };
 
 export const MoviesContext = React.createContext<MovieContextInterface>(initialContextState);
@@ -24,7 +26,7 @@ export const MoviesContext = React.createContext<MovieContextInterface>(initialC
 const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     const [favourites, setFavourites] = useState<number[]>([]);
     const [myReviews, setMyReviews] = useState<Review[]>([]);
-    const [playList, setPlayList] = useState<number[]>([]);
+    const [mustWatch, setMustWatch] = useState<number[]>([]);
 
     const addToFavourites = useCallback((movie: BaseMovieProps) => {
         setFavourites((prevFavourites) => {
@@ -35,12 +37,12 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
         });
     }, []);
 
-    const addToPlayList = useCallback((movie: BaseMovieProps) => {
-        setPlayList((prevPlayList) => {
-            if (!prevPlayList.includes(movie.id)) {
-                return [...prevPlayList, movie.id];
+    const addToMustWatch = useCallback((movie: BaseMovieProps) => {
+        setMustWatch((prevMustWatch) => {
+            if (!prevMustWatch.includes(movie.id)) {
+                return [...prevMustWatch, movie.id];
             }
-            return prevPlayList;
+            return prevMustWatch;
         });
     }, []);
 
@@ -52,6 +54,11 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
         setFavourites((prevFavourites) => prevFavourites.filter((mId) => mId !== movie.id));
     }, []);
 
+    const removeFromMustWatch = useCallback((movie: BaseMovieProps) => {
+        setMustWatch((prevMustWatch) => prevMustWatch.filter((mId) => mId !== movie.id));
+    }, []);
+
+
     return (
         <MoviesContext.Provider
             value={{
@@ -59,8 +66,10 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
                 addToFavourites,
                 removeFromFavourites,
                 addReview,
-                playList,
-                addToPlayList,
+                mustWatch,
+                addToMustWatch,
+                removeFromMustWatch,
+                
             }}
         >
             {children}

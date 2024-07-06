@@ -9,8 +9,7 @@ import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
-import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites";
-import WriteReview from "../components/cardIcons/writeReview";
+import RemoveFromMustWatch from "../components/cardIcons/removeFromMustWatch";
 
 const titleFiltering = {
   name: "title",
@@ -23,32 +22,32 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const FavouriteMoviesPage: React.FC = () => {
-  const { favourites: movieIds } = useContext(MoviesContext);
+const MustWatchMoviesPage: React.FC = () => {
+  const { mustWatch: movieIds } = useContext(MoviesContext);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );
 
   // Create an array of queries and run them in parallel.
-  const favouriteMovieQueries = useQueries(
+  const mustWatchMovieQueries = useQueries(
     movieIds.map((movieId) => {
       return {
-        queryKey: ["favourites", movieId],
+        queryKey: ["must watch", movieId],
         queryFn: () => getMovie(movieId.toString()),
       };
     })
   );
 
   // Check if any of the parallel queries is still loading.
-  const isLoading = favouriteMovieQueries.find((m) => m.isLoading === true);
+  const isLoading = mustWatchMovieQueries.find((m) => m.isLoading === true);
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  const allFavourites = favouriteMovieQueries.map((q) => q.data);
-  const displayedMovies = allFavourites
-    ? filterFunction(allFavourites)
+  const allMovies = mustWatchMovieQueries.map((q) => q.data);
+  const displayedMovies = allMovies
+    ? filterFunction(allMovies)
     : [];
 
   const changeFilterValues = (type: string, value: string) => {
@@ -61,13 +60,12 @@ const FavouriteMoviesPage: React.FC = () => {
   return (
     <>
       <PageTemplate
-        title="Favourite Movies"
+        title="Must Watch Movies"
         movies={displayedMovies}
         action={(movie) => {
           return (
             <>
-              <RemoveFromFavourites {...movie} />
-              <WriteReview {...movie} />
+              <RemoveFromMustWatch {...movie} />
             </>
           );
         }}
@@ -81,4 +79,4 @@ const FavouriteMoviesPage: React.FC = () => {
   );
 };
 
-export default FavouriteMoviesPage;
+export default MustWatchMoviesPage;

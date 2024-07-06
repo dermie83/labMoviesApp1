@@ -1,7 +1,7 @@
 import PageTemplate from '../components/templateMovieListPage';
 import { BaseMovieProps, DiscoverMovies } from "../types/interfaces";
 import { getUpcomingMovies } from "../api/tmdb-api";
-import AddToPlaylist from "../components/cardIcons/addToPlaylist";
+import AddToMustWatch from "../components/cardIcons/addToMustWatch";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
@@ -54,7 +54,7 @@ const UpcomingMoviesPage: React.FC = () => {
         title='Upcoming Movies'
         movies={upcomingMovies}
         action={(movie: BaseMovieProps) => {
-          return <AddToPlaylist {...movie} />
+          return <AddToMustWatch {...movie} />
         }}
       />
       <MovieFilterUI

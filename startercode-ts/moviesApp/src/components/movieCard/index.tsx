@@ -9,6 +9,7 @@ import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddTaskIcon from '@mui/icons-material/AddTask';
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
@@ -32,7 +33,9 @@ interface MovieCardProps  {
 const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
   const { favourites } = useContext(MoviesContext);
   const isFavourite = favourites.find((id) => id === movie.id)? true : false;
- 
+  const { mustWatch } = useContext(MoviesContext);
+  const isMustWatch = mustWatch.find((id) => id === movie.id)? true : false;
+
 
   return (
     <Card sx={styles.card}>
@@ -40,6 +43,10 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
           isFavourite ? (
             <Avatar sx={styles.avatar}>
               <FavoriteIcon />
+            </Avatar>
+          ) : isMustWatch ? (
+            <Avatar sx={styles.avatar}>
+              <AddTaskIcon />
             </Avatar>
           ) : null
         }

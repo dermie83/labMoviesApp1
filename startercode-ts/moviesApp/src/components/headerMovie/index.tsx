@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import Avatar from "@mui/material/Avatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddTaskIcon from '@mui/icons-material/AddTask';
 import { MovieDetailsProps } from "../../types/interfaces"; 
 
 const styles = {
@@ -24,9 +25,13 @@ const styles = {
 
 const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
 
-  // Get movies from local storage.
+  // Get favourite movies from local storage.
   const favourites = JSON.parse(localStorage.getItem("favourites") || '[]');
   const isFavourite = favourites.find((favourite: { id: number; }) => favourite.id === movie.id);
+
+  // Get must watch movies from local storage.
+  const mustWatch = JSON.parse(localStorage.getItem("must_watch") || '[]');
+  const isMustWatch = mustWatch.find((must_watch: { id: number; }) => must_watch.id === movie.id);
 
   
   return (
@@ -38,6 +43,13 @@ const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
          isFavourite ? (
             <Avatar sx={styles.avatar}>
               <FavoriteIcon />
+            </Avatar>
+          ) : null
+        }
+        {
+         isMustWatch ? (
+            <Avatar sx={styles.avatar}>
+              <AddTaskIcon />
             </Avatar>
           ) : null
         }
