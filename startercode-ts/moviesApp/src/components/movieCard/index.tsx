@@ -20,8 +20,11 @@ import { BaseMovieProps } from "../../types/interfaces";
 const styles = {
   card: { maxWidth: 345 },
   media: { height: 500 },
-  avatar: {
+  favouriteAvatar: {
     backgroundColor: "rgb(255, 0, 0)",
+  },
+  mustWatchAvatar: {
+    backgroundColor: "rgb(0, 255, 0)",
   },
 };
 
@@ -39,22 +42,13 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
 
   return (
     <Card sx={styles.card}>
-      <CardHeader avatar={
-          isFavourite ? (
-            <Avatar sx={styles.avatar}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : isMustWatch ? (
-            <Avatar sx={styles.avatar}>
-              <AddTaskIcon />
-            </Avatar>
-          ) : null
-        }
+      <CardHeader 
         title={
           <Typography variant="h5" component="p">
             {movie.title}{" "}
-          </Typography>
-        }/>
+              </Typography>
+        }
+        />
       <CardMedia
         sx={styles.media}
         image={
@@ -63,6 +57,21 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
             : img
         }
       />
+      <Grid container>
+      <CardHeader
+        avatar={
+          isMustWatch ? (
+          <Avatar sx={styles.mustWatchAvatar}>
+            <AddTaskIcon fontSize="small"/>
+          </Avatar>) : null }
+        />
+        <CardHeader
+          avatar={
+            isFavourite ? (
+            <Avatar sx={styles.favouriteAvatar}>
+              <FavoriteIcon fontSize="small"/>
+            </Avatar>) : null }
+        /></Grid>
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
