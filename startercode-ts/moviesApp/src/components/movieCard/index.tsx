@@ -24,7 +24,7 @@ const styles = {
     backgroundColor: "rgb(255, 0, 0)",
   },
   mustWatchAvatar: {
-    backgroundColor: "rgb(0, 255, 0)",
+    backgroundColor: "rgb(0, 200, 0)",
   },
 };
 
