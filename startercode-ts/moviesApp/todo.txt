@@ -1,0 +1,4 @@
+Create People Page
+Add Hyperlink on page to Tickoc/X/Facebook etc...
+
+Create a filter to sort movies alphabetically or by most popular
