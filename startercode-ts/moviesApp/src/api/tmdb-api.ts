@@ -36,7 +36,7 @@ export const getMovie = (id: string) => {
       throw error
    });
   };
-  
+
   export const getMovieImages = (id: string | number) => {
     return fetch(
       `https://api.themoviedb.org/3/movie/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
@@ -87,3 +87,34 @@ export const getMovie = (id: string) => {
         throw error
       });
   };
+
+  export const getCast = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+    ).then((response) => {
+      if (!response.ok)
+        throw new Error(`Unable to fetch popular persons. Response status: ${response.status}`);
+      return response.json();
+    })
+      .catch((error) => {
+        throw error
+      });
+    };
+
+    // export const getPopularPerson = (id: string | number) => {
+    //   return fetch(
+    //     `https://api.themoviedb.org/3/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
+    //   ).then((response) => {
+    //     if (!response.ok) {
+    //       throw new Error("failed to fetch person");
+    //     }
+    //     return response.json();
+    //   }).then((json) => json.results)
+    //     .catch((error) => {
+    //       throw error
+    //     });
+    // };
+
+    // https://api.themoviedb.org/3/person/popular?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US&page=1
+
+    // https://api.themoviedb.org/3/genre/movie/list?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US

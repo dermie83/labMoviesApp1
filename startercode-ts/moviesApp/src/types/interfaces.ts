@@ -50,11 +50,20 @@ export interface BaseMovieProps {
     images: MovieImage[];
   }
 
-  export type FilterOption = "title" | "genre";
+  export type FilterOption = "title" | "genre" | "cast";
 
   export interface MovieListPageTemplateProps extends BaseMovieListProps {
     title: string;
   }
+
+  export interface CastCardProps  {
+    cast: CastMember[];
+  }
+
+  export interface CastListPageTemplateProps extends CastCardProps {
+    title: string;
+  }
+
 
   export interface Review {
     author: string,
@@ -64,10 +73,33 @@ export interface BaseMovieProps {
     movieId: number,
   }
 
+export interface CastMember {
+    id: number
+    adult: boolean
+    gender?: number[]
+    known_for_department: string
+    name: string
+    original_name: string
+    popularity: number
+    profile_path: string
+    cast_id?: number[]
+    character: string
+    credit_id: string
+    order: number
+}
+
   export interface GenreData {
     genres: {
       id: string;
       name: string
+    }[];
+  }
+
+  export interface CastData {
+    results: {
+      id: string;
+      name: string;
+      known_for_department: string
     }[];
   }
   
@@ -76,4 +108,11 @@ export interface BaseMovieProps {
     total_pages: number;
     total_results: number;
     results: BaseMovieProps[];
+  }
+
+  export interface DiscoverCast {
+    page: number;	
+    total_pages: number;
+    total_results: number;
+    results: CastMember[];
   }
