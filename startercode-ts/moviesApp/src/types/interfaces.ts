@@ -99,7 +99,8 @@ export interface CastMember {
     results: {
       id: string;
       name: string;
-      known_for_department: string
+      known_for_department: string;
+      popularity: number
     }[];
   }
   

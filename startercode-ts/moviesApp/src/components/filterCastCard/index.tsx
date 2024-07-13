@@ -37,8 +37,8 @@ const FilterCastCard: React.FC<FilterCastCardProps> = ({ castFilter, onUserInput
   }
 
   const cast = data?.results || [];
-  if (cast[0].name !== "Cast") {
-    cast.unshift({ id: "0", name: "Cast", known_for_department: "Acting" });
+  if (cast[0].popularity >= 144) {
+    cast.unshift({ id: "0", name:"Actor", known_for_department: "Acting", popularity:3});
   }
   
 
@@ -70,6 +70,8 @@ const FilterCastCard: React.FC<FilterCastCardProps> = ({ castFilter, onUserInput
                 </MenuItem>
               );
             })}
+            <div>
+        </div>
           </Select>
         </FormControl>
         
