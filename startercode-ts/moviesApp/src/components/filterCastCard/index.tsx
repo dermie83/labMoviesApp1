@@ -3,7 +3,7 @@ import { FilterOption, CastData } from "../../types/interfaces";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { getCast } from "../../api/tmdb-api";
+import { getCastMembers } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner';
 
@@ -27,7 +27,7 @@ interface FilterCastCardProps {
 
 
 const FilterCastCard: React.FC<FilterCastCardProps> = ({ castFilter, onUserInput }) => {
-  const { data, error, isLoading, isError } = useQuery<CastData, Error>("get cast", getCast);
+  const { data, error, isLoading, isError } = useQuery<CastData, Error>("get cast", getCastMembers);
 
   if (isLoading) {
     return <Spinner />;

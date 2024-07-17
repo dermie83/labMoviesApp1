@@ -4,7 +4,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import HomeIcon from "@mui/icons-material/Home";
 import Avatar from "@mui/material/Avatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddTaskIcon from '@mui/icons-material/AddTask';
@@ -56,9 +55,6 @@ const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
 
       <Typography variant="h4" component="h3">
         {movie.title}{"   "}
-        <a href={movie.homepage}>
-          <HomeIcon color="primary"  fontSize="large"/>
-        </a>
         <br />
         <span>{`${movie.tagline}`} </span>
       </Typography>

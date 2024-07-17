@@ -3,6 +3,7 @@ import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MonetizationIcon from "@mui/icons-material/MonetizationOn";
+import MovieIcon from "@mui/icons-material/Movie";
 import StarRate from "@mui/icons-material/StarRate";
 import Typography from "@mui/material/Typography";
 import { MovieDetailsProps } from "../../types/interfaces";
@@ -54,6 +55,9 @@ const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
                         <Chip label={g.name} />
                     </li>
                 ))}
+                <a href={movie.homepage}>
+                    <MovieIcon color="info"  fontSize="large"/>
+                </a>
             </Paper>
             <Paper component="ul" sx={styles.chipSet}>
                 <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />

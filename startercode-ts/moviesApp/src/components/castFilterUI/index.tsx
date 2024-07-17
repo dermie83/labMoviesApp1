@@ -4,6 +4,7 @@ import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import { CastMember } from "../../types/interfaces";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const castFilter = (cast: CastMember, value: string) => {
     const castId = Number(value);
     const castIds = cast.cast_id;
