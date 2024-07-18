@@ -1,12 +1,12 @@
 import React from "react";
 // import { MoviesContext } from "../../contexts/moviesContext";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 // import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
-// import Button from "@mui/material/Button";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 // import FavoriteIcon from "@mui/icons-material/Favorite";
 // import AddTaskIcon from '@mui/icons-material/AddTask';
@@ -15,7 +15,8 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 // import img from '../../images/film-poster-placeholder.png';
 // import Avatar from "@mui/material/Avatar";
-import {CastMember} from "../../types/interfaces"; 
+import {CastMembers} from "../../types/interfaces"; 
+import { CardActions } from "@mui/material";
 
 const styles = {
   card: { maxWidth: 345 },
@@ -29,10 +30,11 @@ const styles = {
 };
 
 interface CastCardProps  {
-    cast: CastMember;
+    cast: CastMembers;
+    action: (m: CastMembers) => React.ReactNode;
   }
 
-const CastMemberCard: React.FC<CastCardProps> = ({cast}) => {
+const CastMemberCard: React.FC<CastCardProps> = ({cast, action}) => {
     const imageSrc = `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
 
 
@@ -67,6 +69,14 @@ const CastMemberCard: React.FC<CastCardProps> = ({cast}) => {
           </Grid>
         </Grid>
       </CardContent>
+      {/* <CardActions disableSpacing> */}
+      {/* {action(cast)}
+        <Link to={`/castmember/${cast.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            More Info ...
+          </Button>
+        </Link>
+      </CardActions> */}
     </Card>
   );
 }

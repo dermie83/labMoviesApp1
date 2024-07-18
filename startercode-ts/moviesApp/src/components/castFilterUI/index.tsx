@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import CastCard from "../filterCastCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import { CastMember } from "../../types/interfaces";
+import { CastMembers } from "../../types/interfaces";
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const castFilter = (cast: CastMember, value: string) => {
+export const castFilter = (cast: CastMembers, value: string) => {
     const castId = Number(value);
     const castIds = cast.cast_id;
     return castId > 0 && castIds ? castIds.includes(castId) : true;

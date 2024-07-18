@@ -57,7 +57,7 @@ export interface BaseMovieProps {
   }
 
   export interface CastCardProps  {
-    cast: CastMember[];
+    cast: CastMembers[];
   }
 
   export interface CastListPageTemplateProps extends CastCardProps {
@@ -73,7 +73,7 @@ export interface BaseMovieProps {
     movieId: number,
   }
 
-export interface CastMember {
+export interface CastMembers {
     id: number
     adult: boolean
     gender?: number[]
@@ -88,6 +88,12 @@ export interface CastMember {
     order: number
 }
 
+export interface CastMember {
+  id: number
+  biography:string;
+}
+
+
   export interface GenreData {
     genres: {
       id: string;
@@ -95,7 +101,7 @@ export interface CastMember {
     }[];
   }
 
-  export interface CastData {
+  export interface CastMembersData {
     results: {
       id: string;
       name: string;

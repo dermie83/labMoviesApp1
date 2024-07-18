@@ -65,7 +65,7 @@ export const getMovie = (id: string) => {
       });
   };
   //`https://api.themoviedb.org/3/movie/1022789/images?api_key=6abaacc8d8d55c12e7c3b2ff08754395`
-  // `https://api.themoviedb.org/3/person/1?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US`
+   `https://api.themoviedb.org/3/person/500?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US`
 
   export const getMovieReviews = (id: string | number) => { //movie id can be string or number
     return fetch(
@@ -104,7 +104,7 @@ export const getMovie = (id: string) => {
       });
   };
 
-  export const getCastMembers = () => {
+  export const getCast = () => {
     return fetch(
       `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
     ).then((response) => {
@@ -131,6 +131,6 @@ export const getMovie = (id: string) => {
     //     });
     // };
 
-    // https://api.themoviedb.org/3/person/popular?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US&page=1
+    `https://api.themoviedb.org/3/person/popular?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US&page=1`
 
     // https://api.themoviedb.org/3/genre/movie/list?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US
