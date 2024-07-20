@@ -35,6 +35,27 @@ export interface BaseMovieProps {
       }[];
   }
 
+  export interface CastDetailsProps extends CastMembers {
+    cast: {
+      id: number;
+      name: string;
+      also_known_as: string;
+      birthday: string,
+      biography:string,
+      gender: 2,
+      homepage: "http://www.tomcruise.com",
+    }[];
+  }
+
+  export interface CastPageProps {
+    cast: CastDetailsProps;
+  }
+  
+  export interface MoviePageProps {
+    movie: MovieDetailsProps;
+    images: MovieImage[];
+  }
+
   export interface MovieImage {
     file_path: string;
     aspect_ratio?: number; //some props are optional...
@@ -44,11 +65,6 @@ export interface BaseMovieProps {
     vote_count?: number;
     width?: number;
   }
-  
-  export interface MoviePageProps {
-    movie: MovieDetailsProps;
-    images: MovieImage[];
-  }
 
   export type FilterOption = "title" | "genre" | "cast";
 
@@ -56,11 +72,11 @@ export interface BaseMovieProps {
     title: string;
   }
 
-  export interface CastCardProps  {
+  export interface CastListCardProps  {
     cast: CastMembers[];
   }
 
-  export interface CastListPageTemplateProps extends CastCardProps {
+  export interface CastListPageTemplateProps extends CastListCardProps {
     title: string;
   }
 

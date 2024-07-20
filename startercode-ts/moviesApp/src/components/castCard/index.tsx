@@ -31,10 +31,9 @@ const styles = {
 
 interface CastCardProps  {
     cast: CastMembers;
-    action: (m: CastMembers) => React.ReactNode;
   }
 
-const CastMemberCard: React.FC<CastCardProps> = ({cast, action}) => {
+const CastMemberCard: React.FC<CastCardProps> = ({cast}) => {
     const imageSrc = `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
 
 
@@ -69,14 +68,13 @@ const CastMemberCard: React.FC<CastCardProps> = ({cast, action}) => {
           </Grid>
         </Grid>
       </CardContent>
-      {/* <CardActions disableSpacing>
-      {action(cast)}
+      <CardActions disableSpacing>
         <Link to={`/castmember/${cast.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
         </Link>
-      </CardActions> */}
+      </CardActions>
     </Card>
   );
 }

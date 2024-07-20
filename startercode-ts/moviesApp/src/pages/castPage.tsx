@@ -50,9 +50,6 @@ const CastMemberPage: React.FC = () => {
       <PageTemplate
         title="Discover Movies"
         cast={displayedCast}
-        action={(cast: CastMembers) => {
-          return <AddToFavouritesIcon {...cast} />
-        }}
       />
       <CastFilterUI
         onFilterValuesChange={changeFilterValues}
