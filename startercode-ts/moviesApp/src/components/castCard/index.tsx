@@ -69,8 +69,8 @@ const CastMemberCard: React.FC<CastCardProps> = ({cast, action}) => {
           </Grid>
         </Grid>
       </CardContent>
-      {/* <CardActions disableSpacing> */}
-      {/* {action(cast)}
+      {/* <CardActions disableSpacing>
+      {action(cast)}
         <Link to={`/castmember/${cast.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...

@@ -1,11 +1,11 @@
-import React from "react";
-import { FilterOption, CastMembersData } from "../../types/interfaces";
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import React, { ChangeEvent } from "react";
+import { FilterOption } from "../../types/interfaces";
+import { SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { getCast } from "../../api/tmdb-api";
-import { useQuery } from "react-query";
-import Spinner from '../spinner';
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 const styles = {
   root: {
@@ -22,24 +22,11 @@ const styles = {
 
 interface FilterCastCardProps {
   onUserInput: (f: FilterOption, s: string)  => void;
-  castFilter: string;
+  nameFilter: string;
 }
 
 
-const FilterCastCard: React.FC<FilterCastCardProps> = ({ castFilter, onUserInput }) => {
-  const { data, error, isLoading, isError } = useQuery<CastMembersData, Error>("get cast", getCast);
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-  if (isError) {
-    return <h1>{(error as Error).message}</h1>;
-  }
-
-  const cast = data?.results || [];
-  if (cast[0].popularity >= 144) {
-    cast.unshift({ id: "0", name:"Actor", known_for_department: "Acting", popularity:3});
-  }
+const FilterCastCard: React.FC<FilterCastCardProps> = ({ nameFilter, onUserInput }) => {
   
 
   const handleChange = (e: SelectChangeEvent, type: FilterOption, value: string) => {
@@ -47,34 +34,26 @@ const FilterCastCard: React.FC<FilterCastCardProps> = ({ castFilter, onUserInput
       onUserInput(type, value)
   };
 
-  const handleCastChange = (e: SelectChangeEvent) => {
+  const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     handleChange(e, "cast", e.target.value)
-  };
-
+  }
   return (
     <>
     <Card sx={styles.root} variant="outlined">
       <CardContent>
-        <FormControl sx={styles.formControl}>
-          <InputLabel id="cast-label">Cast</InputLabel>
-          <Select
-            labelId="cast-label"
-            id="cast-select"
-            value={castFilter}
-            onChange={handleCastChange}
-          >
-            {cast.map((castFilter) => {
-              return (
-                <MenuItem key={castFilter.id} value={castFilter.id}>
-                  {castFilter.known_for_department}
-                </MenuItem>
-              );
-            })}
-            <div>
-        </div>
-          </Select>
-        </FormControl>
-        
+        <Typography variant="h5" component="h1">
+          <FilterAltIcon fontSize="large" />
+          Filter the Cast.
+        </Typography>
+        <TextField
+          sx={styles.formControl}
+          id="filled-search"
+          label="Search field"
+          type="search"
+          value={nameFilter}
+          variant="filled"
+          onChange={handleTextChange}
+        />
       </CardContent>
     </Card>
       </>

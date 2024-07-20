@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import CastCard from "../filterCastCard";
+import FilterCard from "../filterCastCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import { CastMembers } from "../../types/interfaces";
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const castFilter = (cast: CastMembers, value: string) => {
-    const castId = Number(value);
-    const castIds = cast.cast_id;
-    return castId > 0 && castIds ? castIds.includes(castId) : true;
+export const nameFilter = (cast: CastMembers, value: string): boolean => {
+    return cast.name.toLowerCase().search(value.toLowerCase()) !== -1;
 };
 
 const styles = {
@@ -23,13 +20,13 @@ const styles = {
     },
 };
 
-interface MovieCastUIProps {
+interface CastFilterUIProps {
     onFilterValuesChange: (f: string, s: string) => void;
-    castFilter: string;
+    nameFilter: string;
 }
 
 
-const MovieCastUI: React.FC<MovieCastUIProps> = ({ onFilterValuesChange, castFilter }) => {
+const CastFilterUI: React.FC<CastFilterUIProps> = ({ onFilterValuesChange, nameFilter }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
@@ -47,13 +44,13 @@ const MovieCastUI: React.FC<MovieCastUIProps> = ({ onFilterValuesChange, castFil
                 open={drawerOpen}
                 onClose={() => setDrawerOpen(false)}
             >
-                <CastCard
+                <FilterCard
                     onUserInput={onFilterValuesChange}
-                    castFilter={castFilter}
+                    nameFilter={nameFilter}
                 />
             </Drawer>
         </>
     );
 };
 
-export default MovieCastUI;
+export default CastFilterUI;

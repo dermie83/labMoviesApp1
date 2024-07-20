@@ -10,7 +10,7 @@ const styles = {
   }
 };
 
-const CastListPageTemplate: React.FC<CastListPageTemplateProps> = ({ cast })=> {
+const CastListPageTemplate: React.FC<CastListPageTemplateProps> = ({ cast, action })=> {
   return (
     <Grid container sx={styles.root}>
       {/* <Grid item xs={12}>
@@ -18,6 +18,7 @@ const CastListPageTemplate: React.FC<CastListPageTemplateProps> = ({ cast })=> {
       </Grid> */}
       <Grid item container spacing={5}>
         <CastList
+          action={action}
           cast={cast}
         ></CastList>
       </Grid>

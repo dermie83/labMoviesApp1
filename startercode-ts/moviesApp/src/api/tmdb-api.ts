@@ -59,7 +59,7 @@ export const getMovie = (id: string) => {
         throw new Error("failed to fetch cast member");
       }
       return response.json();
-    }).then((json) => json.posters)
+    }).then((json) => json.results)
       .catch((error) => {
         throw error
       });
