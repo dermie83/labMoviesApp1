@@ -24,6 +24,7 @@ export const getMovie = (id: string) => {
     throw error
  });
 };
+
   export const getGenres = () => {
     return fetch(
       "https://api.themoviedb.org/3/genre/movie/list?api_key=" + import.meta.env.VITE_TMDB_KEY + "&language=en-US"
@@ -56,13 +57,13 @@ export const getMovie = (id: string) => {
       `https://api.themoviedb.org/3/person/${person_id}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
     ).then((response) => {
       if (!response.ok) {
-        throw new Error("failed to fetch cast member");
+        throw new Error(`Failed to get movie data. Response status: ${response.status}`);
       }
       return response.json();
-    }).then((json) => json.results)
-      .catch((error) => {
-        throw error
-      });
+    })
+    .catch((error) => {
+      throw error
+   });
   };
   //`https://api.themoviedb.org/3/movie/1022789/images?api_key=6abaacc8d8d55c12e7c3b2ff08754395`
    `https://api.themoviedb.org/3/person/500?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US`
@@ -117,20 +118,9 @@ export const getMovie = (id: string) => {
       });
     };
 
-    // export const getPopularPerson = (id: string | number) => {
-    //   return fetch(
-    //     `https://api.themoviedb.org/3/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
-    //   ).then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error("failed to fetch person");
-    //     }
-    //     return response.json();
-    //   }).then((json) => json.results)
-    //     .catch((error) => {
-    //       throw error
-    //     });
-    // };
 
-    `https://api.themoviedb.org/3/person/popular?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US&page=1`
+    // `https://api.themoviedb.org/3/movie/22/images?api_key=6abaacc8d8d55c12e7c3b2ff08754395`
+    // `https://api.themoviedb.org/3/movie/1022789?api_key=6abaacc8d8d55c12e7c3b2ff08754395`
+    // `https://api.themoviedb.org/3/person/popular?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US&page=1`
 
     // https://api.themoviedb.org/3/genre/movie/list?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US

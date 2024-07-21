@@ -35,21 +35,6 @@ export interface BaseMovieProps {
       }[];
   }
 
-  export interface CastDetailsProps extends CastMembers {
-    cast: {
-      id: number;
-      name: string;
-      also_known_as: string;
-      birthday: string,
-      biography:string,
-      gender: 2,
-      homepage: "http://www.tomcruise.com",
-    }[];
-  }
-
-  export interface CastPageProps {
-    cast: CastDetailsProps;
-  }
   
   export interface MoviePageProps {
     movie: MovieDetailsProps;
@@ -102,6 +87,10 @@ export interface CastMembers {
     character: string
     credit_id: string
     order: number
+    also_known_as: string;
+    birthday: string,
+    biography:string,
+    homepage: string,
 }
 
 export interface CastMember {

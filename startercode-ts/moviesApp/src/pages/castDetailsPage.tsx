@@ -31,7 +31,7 @@ const CastDetailsPage: React.FC= () => {
         </PageTemplate>
       </>
     ) : (
-      <p>Waiting for movie details</p>
+      <p>Waiting for cast details</p>
     )}
     </>
   );

@@ -1,49 +1,30 @@
 import React from "react";
 import CastHeader from "../headerCast";
 import Grid from "@mui/material/Grid";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-// import { getMovieImages } from "../../api/tmdb-api";
-import { CastDetailsProps } from "../../types/interfaces";
-import { useQuery } from "react-query";
-import Spinner from '../spinner';
 
-const styles = {
-    gridListRoot: {
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-    },
-    gridListTile: {
-        width: 450,
-        height: '100vh',
-    },
-};
+
+import { CastMembers } from "../../types/interfaces";
+
+
+// const styles = {
+//     gridListRoot: {
+//         display: "flex",
+//         flexWrap: "wrap",
+//         justifyContent: "space-around",
+//     },
+//     gridListTile: {
+//         width: 450,
+//         height: '100vh',
+//     },
+// };
 
 interface TemplateCastPageProps {
-    cast: CastDetailsProps;
+    cast: CastMembers;
     children: React.ReactElement;
 }
 
 
 const TemplateCastPage: React.FC<TemplateCastPageProps> = ({cast, children}) => {
-    // const { data, error, isLoading, isError } = useQuery<MovieImage[], Error>(
-    //     ["images", movie.id],
-    //     () => getMovieImages(movie.id)
-    // );
-
-    // if (isLoading) {
-    //     return <Spinner />;
-    // }
-
-    // if (isError) {
-    //     return <h1>{(error
-
-    //     ).message}</h1>;
-    // }
-
-    // const images = data as MovieImage[];
-    console.log("cast detail", cast)
 
     return (
         <>

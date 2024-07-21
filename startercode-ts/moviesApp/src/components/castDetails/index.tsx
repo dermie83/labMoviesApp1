@@ -1,16 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import MonetizationIcon from "@mui/icons-material/MonetizationOn";
 import MovieIcon from "@mui/icons-material/Movie";
-import StarRate from "@mui/icons-material/StarRate";
 import Typography from "@mui/material/Typography";
-import { CastDetailsProps } from "../../types/interfaces";
-import NavigationIcon from "@mui/icons-material/Navigation";
-import Fab from "@mui/material/Fab";
-import Drawer from "@mui/material/Drawer";
-import MovieReviews from '../movieReviews'
+import { CastMembers } from "../../types/interfaces";
 
 const styles = {
     chipSet: {
@@ -32,9 +25,7 @@ const styles = {
     },
 };
 
-const CastDetails: React.FC<CastDetailsProps> = (cast) => {
-
-    const [drawerOpen, setDrawerOpen] = useState(false); // New
+const CastDetails: React.FC<CastMembers> = (cast) => {
 
     return (
         <>
@@ -50,12 +41,8 @@ const CastDetails: React.FC<CastDetailsProps> = (cast) => {
                 <li>
                     <Chip label="Genres" sx={styles.chipLabel} color="primary" />
                 </li>
-                {/* {cast.genres.map((g) => (
-                    <li key={g.name}>
-                        <Chip label={g.name} />
-                    </li>
-                ))} */}
-                <a href={cast.homepage}>
+                <a href={cast.homepage} target="_blank">
+                {/* <a href={cast.homepage}> */}
                     <MovieIcon color="info"  fontSize="large"/>
                 </a>
             </Paper>
@@ -71,18 +58,6 @@ const CastDetails: React.FC<CastDetailsProps> = (cast) => {
                 />
                 <Chip label={`Released: ${movie.release_date}`} />
             </Paper> */}
-            <Fab
-                color="secondary"
-                variant="extended"
-                onClick={() => setDrawerOpen(true)}
-                sx={styles.fab}
-            >
-                <NavigationIcon />
-                Reviews
-            </Fab>
-            {/* <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-                <MovieReviews {...cast} />
-            </Drawer> */}
         </>
     );
 };
