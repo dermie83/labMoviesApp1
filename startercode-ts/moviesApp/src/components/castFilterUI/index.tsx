@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import FilterCard from "../filterCastCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import { CastMembers } from "../../types/interfaces";
+import { BaseCastMembersProps } from "../../types/interfaces";
 
-export const nameFilter = (cast: CastMembers, value: string): boolean => {
+export const nameFilter = (cast: BaseCastMembersProps, value: string): boolean => {
     return cast.name.toLowerCase().search(value.toLowerCase()) !== -1;
 };
 

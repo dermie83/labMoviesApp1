@@ -35,6 +35,13 @@ export interface BaseMovieProps {
       }[];
   }
 
+  export interface TrendingTVDetailsProps extends BaseTrendingTVProps {
+    genres: {
+      id: number;
+      name: string;
+    }[];
+  }
+
   
   export interface MoviePageProps {
     movie: MovieDetailsProps;
@@ -58,13 +65,21 @@ export interface BaseMovieProps {
   }
 
   export interface CastListCardProps  {
-    cast: CastMembers[];
+    cast: BaseCastMembersProps[];
   }
 
   export interface CastListPageTemplateProps extends CastListCardProps {
     title: string;
   }
 
+  export interface TrendingTVListProps { 
+    trendingTV: [BaseTrendingTVProps];
+    action: (m: BaseTrendingTVProps) => React.ReactNode;
+  }
+
+  export interface TrendingTVListPageTemplateProps extends TrendingTVListProps {
+    title: string;
+  }
 
   export interface Review {
     author: string,
@@ -74,10 +89,10 @@ export interface BaseMovieProps {
     movieId: number,
   }
 
-export interface CastMembers {
+export interface BaseCastMembersProps {
     id: number
     adult: boolean
-    gender?: number[]
+    gender: number[]
     known_for_department: string
     name: string
     original_name: string
@@ -127,4 +142,30 @@ export interface CastMember {
     total_pages: number;
     total_results: number;
     results: CastMember[];
+  }
+
+  export interface DiscoverTrendingTV {
+    page: number;	
+    total_pages: number;
+    total_results: number;
+    results: BaseTrendingTVProps[];
+  }
+
+  export interface BaseTrendingTVProps {
+    id: number;
+    name: string;
+    backdrop_path?: string;
+    original_name: string;
+    overview: string;
+    poster_path?: string;
+    media_type: string;
+    adult: string;
+    original_language: string;
+    genre_ids?: number[];
+    popularity: number;
+    first_air_date: string;
+    vote_average: number;
+    vote_count: number;
+    origin_country: string[];
+    must_watch?: boolean;
   }

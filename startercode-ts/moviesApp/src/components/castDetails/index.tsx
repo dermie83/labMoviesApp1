@@ -3,7 +3,7 @@ import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import MovieIcon from "@mui/icons-material/Movie";
 import Typography from "@mui/material/Typography";
-import { CastMembers } from "../../types/interfaces";
+import { BaseCastMembersProps } from "../../types/interfaces";
 
 const styles = {
     chipSet: {
@@ -25,7 +25,7 @@ const styles = {
     },
 };
 
-const CastDetails: React.FC<CastMembers> = (cast) => {
+const CastDetails: React.FC<BaseCastMembersProps> = (cast) => {
 
     return (
         <>

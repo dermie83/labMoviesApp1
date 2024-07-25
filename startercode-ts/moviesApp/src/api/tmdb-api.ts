@@ -118,6 +118,19 @@ export const getMovie = (id: string) => {
       });
     };
 
+    export const getTrendingTV = () => {
+      return fetch(
+        `https://api.themoviedb.org/3/trending/tv/day?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+      ).then((response) => {
+        if (!response.ok)
+          throw new Error(`Unable to fetch trending TV. Response status: ${response.status}`);
+        return response.json();
+      })
+        .catch((error) => {
+          throw error
+        });
+    };
+
 
     // `https://api.themoviedb.org/3/movie/22/images?api_key=6abaacc8d8d55c12e7c3b2ff08754395`
     // `https://api.themoviedb.org/3/movie/1022789?api_key=6abaacc8d8d55c12e7c3b2ff08754395`

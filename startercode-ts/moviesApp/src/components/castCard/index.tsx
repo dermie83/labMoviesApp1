@@ -15,7 +15,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 // import img from '../../images/film-poster-placeholder.png';
 // import Avatar from "@mui/material/Avatar";
-import {CastMembers} from "../../types/interfaces"; 
+import {BaseCastMembersProps} from "../../types/interfaces"; 
 import { CardActions } from "@mui/material";
 
 const styles = {
@@ -30,7 +30,7 @@ const styles = {
 };
 
 interface CastCardProps  {
-    cast: CastMembers;
+    cast: BaseCastMembersProps;
   }
 
 const CastMemberCard: React.FC<CastCardProps> = ({cast}) => {

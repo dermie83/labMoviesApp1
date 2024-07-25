@@ -5,10 +5,9 @@ import useFiltering from "../hooks/useFiltering";
 import CastFilterUI, {
   nameFilter,
 } from "../components/castFilterUI";
-import { CastMembers, DiscoverCast } from "../types/interfaces";
+import { BaseCastMembersProps, DiscoverCast } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-// import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 
 
 const nameFiltering = {
@@ -48,7 +47,7 @@ const CastMemberPage: React.FC = () => {
   return (
     <>
       <PageTemplate
-        title="Discover Movies"
+        title="Discover Cast"
         cast={displayedCast}
       />
       <CastFilterUI
