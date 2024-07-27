@@ -4,12 +4,12 @@ import { BaseTrendingTVProps } from "../types/interfaces";
 
 interface TrendingTVContextInterface {
     mustWatch: number[];
-    addToMustWatch: ((trendingTV: BaseTrendingTVProps) => void);
+    addToMustWatchTV: ((trendingTV: BaseTrendingTVProps) => void);
     removeFromMustWatch: ((trendingTV: BaseTrendingTVProps) => void);
 }
 const initialContextState: TrendingTVContextInterface = {
     mustWatch: [],
-    addToMustWatch: () => { },
+    addToMustWatchTV: () => { },
     removeFromMustWatch: () => { },
 };
 
@@ -19,7 +19,7 @@ const TrendingTVContextProvider: React.FC<React.PropsWithChildren> = ({ children
     const [mustWatch, setMustWatch] = useState<number[]>([]);
 
 
-    const addToMustWatch = useCallback((trendingTV: BaseTrendingTVProps) => {
+    const addToMustWatchTV = useCallback((trendingTV: BaseTrendingTVProps) => {
         setMustWatch((prevMustWatch) => {
             if (!prevMustWatch.includes(trendingTV.id)) {
                 return [...prevMustWatch, trendingTV.id];
@@ -29,7 +29,7 @@ const TrendingTVContextProvider: React.FC<React.PropsWithChildren> = ({ children
     }, []);
 
     const removeFromMustWatch = useCallback((trendingTV: BaseTrendingTVProps) => {
-        setMustWatch((prevMustWatch) => prevMustWatch.filter((ttvId) => ttvId !== trendingTV.id));
+        setMustWatch((prevMustWatch) => prevMustWatch.filter((tvId) => tvId !== trendingTV.id));
     }, []);
 
 
@@ -37,7 +37,7 @@ const TrendingTVContextProvider: React.FC<React.PropsWithChildren> = ({ children
         <TrendingTVContext.Provider
             value={{
                 mustWatch,
-                addToMustWatch,
+                addToMustWatchTV,
                 removeFromMustWatch,
                 
             }}

@@ -3,9 +3,9 @@ import PageTemplate from "../components/templateCastListPage";
 import { getCast } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
 import CastFilterUI, {
-  nameFilter,
+  nameFilter, genderFilter
 } from "../components/castFilterUI";
-import { BaseCastMembersProps, DiscoverCast } from "../types/interfaces";
+import { DiscoverCast } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 
@@ -16,11 +16,16 @@ const nameFiltering = {
   condition: nameFilter,
 };
 
+const genderFiltering = {
+  name: "gender",
+  value: "",
+  condition: genderFilter,
+};
 
 const CastMemberPage: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<DiscoverCast, Error>("cast", getCast);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [nameFiltering]
+    [nameFiltering, genderFiltering]
   );
 
   if (isLoading) {
@@ -53,6 +58,7 @@ const CastMemberPage: React.FC = () => {
       <CastFilterUI
         onFilterValuesChange={changeFilterValues}
         nameFilter={filterValues[0].value}
+        genderFilter={filterValues[1].value}
       />
     </>
   );

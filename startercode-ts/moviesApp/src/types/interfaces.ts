@@ -35,7 +35,7 @@ export interface BaseMovieProps {
       }[];
   }
 
-  export interface TrendingTVDetailsProps extends BaseTrendingTVProps {
+  export interface TVDetailsProps extends BaseTrendingTVProps {
     genres: {
       id: number;
       name: string;
@@ -58,7 +58,7 @@ export interface BaseMovieProps {
     width?: number;
   }
 
-  export type FilterOption = "title" | "genre" | "cast";
+  export type FilterOption = "title" | "genre" | "cast" | "gender";
 
   export interface MovieListPageTemplateProps extends BaseMovieListProps {
     title: string;
@@ -72,12 +72,12 @@ export interface BaseMovieProps {
     title: string;
   }
 
-  export interface TrendingTVListProps { 
+  export interface BaseTrendingTVListProps { 
     trendingTV: [BaseTrendingTVProps];
     action: (m: BaseTrendingTVProps) => React.ReactNode;
   }
 
-  export interface TrendingTVListPageTemplateProps extends TrendingTVListProps {
+  export interface TrendingTVListPageTemplateProps extends BaseTrendingTVListProps {
     title: string;
   }
 
@@ -92,7 +92,7 @@ export interface BaseMovieProps {
 export interface BaseCastMembersProps {
     id: number
     adult: boolean
-    gender: number[]
+    gender: number
     known_for_department: string
     name: string
     original_name: string

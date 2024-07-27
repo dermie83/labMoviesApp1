@@ -11,7 +11,7 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SortIcon from '@mui/icons-material/Sort';
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { getMovieGenres } from "../../api/tmdb-api";
+import { getTVGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner';
 
@@ -28,15 +28,15 @@ const styles = {
   },
 };
 
-interface FilterMoviesCardProps {
+interface FilterTrendingTVCardProps {
   onUserInput: (f: FilterOption, s: string)  => void;
   titleFilter: string;
   genreFilter: string;
 }
 
 
-const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreFilter, onUserInput }) => {
-  const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getMovieGenres);
+const FilterTrendingTVCard: React.FC<FilterTrendingTVCardProps> = ({ titleFilter, genreFilter, onUserInput }) => {
+  const { data, error, isLoading, isError } = useQuery<GenreData, Error>("TV genres", getTVGenres);
 
   if (isLoading) {
     return <Spinner />;
@@ -67,7 +67,7 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
       <CardContent>
         <Typography variant="h5" component="h1">
           <FilterAltIcon fontSize="large" />
-          Filter the movies.
+          Filter the Shows.
         </Typography>
         <TextField
           sx={styles.formControl}
@@ -79,7 +79,7 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
           onChange={handleTextChange}
         />
         <FormControl sx={styles.formControl}>
-          <InputLabel id="genre-label">Genre</InputLabel>
+          <InputLabel id="genre-label">TV Genre</InputLabel>
           <Select
             labelId="genre-label"
             id="genre-select"
@@ -101,7 +101,7 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
         <CardContent>
           <Typography variant="h5" component="h1">
             <SortIcon fontSize="large" />
-            Sort the movies.
+            Sort the tv.
           </Typography>
         </CardContent>
       </Card>
@@ -109,4 +109,4 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
   );
 }
 
-export default FilterMoviesCard;
+export default FilterTrendingTVCard;

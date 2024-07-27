@@ -1,12 +1,12 @@
 import React, {useContext} from "react";
 import { TrendingTVContext } from "../../contexts/trendingTVContext";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
-// import Button from "@mui/material/Button";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
@@ -35,7 +35,7 @@ interface TrendingTVCardProps  {
 const TrendingTVCard: React.FC<TrendingTVCardProps> = ({trendingTV, action}) => {
   
   const { mustWatch } = useContext(TrendingTVContext);
-  const isMustWatch = mustWatch.find((id) => id === trendingTV.id)? true : false;
+  const isMustWatchTV = mustWatch.find((id) => id === trendingTV.id)? true : false;
 
 
   return (
@@ -51,7 +51,7 @@ const TrendingTVCard: React.FC<TrendingTVCardProps> = ({trendingTV, action}) => 
         <Grid container>
               <CardHeader
                 avatar={
-                  isMustWatch ? (
+                  isMustWatchTV ? (
                   <Avatar sx={styles.mustWatchAvatar}>
                     <AddTaskIcon fontSize="small"/>
                   </Avatar>) : null }
@@ -75,11 +75,11 @@ const TrendingTVCard: React.FC<TrendingTVCardProps> = ({trendingTV, action}) => 
       </CardContent>
       <CardActions disableSpacing>
       {action(trendingTV)}
-        {/* <Link to={`/movies/${movie.id}`}>
+        <Link to={``}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
-        </Link> */}
+        </Link>
       </CardActions>
     </Card>
   );

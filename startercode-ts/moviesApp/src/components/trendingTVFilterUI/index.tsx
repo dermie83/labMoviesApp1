@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import FilterCard from "../filterCastCard";
+import FilterCard from "../filterTrendingTVCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import { BaseCastMembersProps } from "../../types/interfaces";
+import { BaseTrendingTVProps } from "../../types/interfaces";
 
-export const nameFilter = (cast: BaseCastMembersProps, value: string): boolean => {
-    return cast.name.toLowerCase().search(value.toLowerCase()) !== -1;
+export const titleFilter = (trendingTV: BaseTrendingTVProps, value: string): boolean => {
+    return trendingTV.name.toLowerCase().search(value.toLowerCase()) !== -1;
 };
 
-export const genderFilter = (cast: BaseCastMembersProps, value: string): boolean => {
-    const genderId = Number(value);
-    return genderId > 0 ? genderId === cast.gender : true;
+export const genreFilter = (trendingTV: BaseTrendingTVProps, value: string) => {
+    const genreId = Number(value);
+    const genreIds = trendingTV.genre_ids;
+    return genreId > 0 && genreIds ? genreIds.includes(genreId) : true;
 };
 
 const styles = {
@@ -25,14 +26,14 @@ const styles = {
     },
 };
 
-interface CastFilterUIProps {
+interface TrendingTVFilterUIProps {
     onFilterValuesChange: (f: string, s: string) => void;
-    nameFilter: string;
-    genderFilter: string;
+    titleFilter: string;
+    genreFilter: string;
 }
 
 
-const CastFilterUI: React.FC<CastFilterUIProps> = ({ onFilterValuesChange, nameFilter, genderFilter }) => {
+const TrendingTVFilterUI: React.FC<TrendingTVFilterUIProps> = ({ onFilterValuesChange, titleFilter, genreFilter }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
@@ -52,12 +53,12 @@ const CastFilterUI: React.FC<CastFilterUIProps> = ({ onFilterValuesChange, nameF
             >
                 <FilterCard
                     onUserInput={onFilterValuesChange}
-                    nameFilter={nameFilter}
-                    genderFilter={genderFilter}
+                    titleFilter={titleFilter}
+                    genreFilter={genreFilter}
                 />
             </Drawer>
         </>
     );
 };
 
-export default CastFilterUI;
+export default TrendingTVFilterUI;
