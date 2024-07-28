@@ -23,7 +23,7 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const HomePage: React.FC = () => {
+const MoviesHomePage: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("discover Movies", getMovies);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
@@ -67,4 +67,4 @@ const HomePage: React.FC = () => {
     </>
   );
 };
-export default HomePage;
+export default MoviesHomePage;

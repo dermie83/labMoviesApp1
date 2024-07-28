@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import PageTemplate from "../components/templateMovieListPage";
-import { MoviesContext } from "../contexts/moviesContext";
+import { SiteContext } from "../contexts/siteContext";
 import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
@@ -23,7 +23,7 @@ const genreFiltering = {
 };
 
 const MustWatchMoviesPage: React.FC = () => {
-  const { mustWatch: movieIds } = useContext(MoviesContext);
+  const { mustWatch: movieIds } = useContext(SiteContext);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );

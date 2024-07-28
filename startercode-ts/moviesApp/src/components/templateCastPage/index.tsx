@@ -3,7 +3,7 @@ import CastHeader from "../headerCast";
 import Grid from "@mui/material/Grid";
 
 
-import { CastMembers } from "../../types/interfaces";
+import { BaseCastMembersProps } from "../../types/interfaces";
 
 
 // const styles = {
@@ -19,7 +19,7 @@ import { CastMembers } from "../../types/interfaces";
 // };
 
 interface TemplateCastPageProps {
-    cast: CastMembers;
+    cast: BaseCastMembersProps;
     children: React.ReactElement;
 }
 

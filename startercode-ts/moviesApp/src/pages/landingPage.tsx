@@ -12,7 +12,7 @@ const LandingPage: React.FC = () => {
   return (
     <>
       <ButtonGroup variant="contained" aria-label="Basic button group">
-       <Link to="/movies/popular">
+       <Link to="/movies">
           <Button variant="outlined" size="medium" color="primary">
             Movies Info ...
           </Button>

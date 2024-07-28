@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import PageTemplate from "../components/templateTrendingTVListPage";
-import { TrendingTVContext } from "../contexts/trendingTVContext";
+import { SiteContext } from "../contexts/siteContext";
 import { useQueries } from "react-query";
 import { getTVShow } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
@@ -23,7 +23,7 @@ const genreFiltering = {
 };
 
 const MustWatchTrendingTVPage: React.FC = () => {
-  const { mustWatch: trendingTVIds } = useContext(TrendingTVContext);
+  const { mustWatchTV: trendingTVIds } = useContext(SiteContext);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );

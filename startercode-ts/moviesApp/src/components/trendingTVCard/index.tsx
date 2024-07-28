@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import { TrendingTVContext } from "../../contexts/trendingTVContext";
+import { SiteContext } from "../../contexts/siteContext";
 import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -34,8 +34,8 @@ interface TrendingTVCardProps  {
 
 const TrendingTVCard: React.FC<TrendingTVCardProps> = ({trendingTV, action}) => {
   
-  const { mustWatch } = useContext(TrendingTVContext);
-  const isMustWatchTV = mustWatch.find((id) => id === trendingTV.id)? true : false;
+  const { mustWatchTV } = useContext(SiteContext);
+  const isMustWatchTV = mustWatchTV.find((id) => id === trendingTV.id)? true : false;
 
 
   return (

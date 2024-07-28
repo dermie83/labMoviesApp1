@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { BaseMovieProps, Review } from "../types/interfaces";
+import { BaseMovieProps, Review, BaseTrendingTVProps } from "../types/interfaces";
 
 
 interface MovieContextInterface {
@@ -10,6 +10,9 @@ interface MovieContextInterface {
     mustWatch: number[];
     addToMustWatch: ((movie: BaseMovieProps) => void);
     removeFromMustWatch: ((movie: BaseMovieProps) => void);
+    mustWatchTV: number[];
+    addToMustWatchTV: ((trendingTV: BaseTrendingTVProps) => void);
+    removeFromMustWatchTV: ((trendingTV: BaseTrendingTVProps) => void);
 }
 const initialContextState: MovieContextInterface = {
     favourites: [],
@@ -19,14 +22,18 @@ const initialContextState: MovieContextInterface = {
     mustWatch: [],
     addToMustWatch: () => { },
     removeFromMustWatch: () => { },
+    mustWatchTV: [],
+    addToMustWatchTV: () => { },
+    removeFromMustWatchTV: () => { },
 };
 
-export const MoviesContext = React.createContext<MovieContextInterface>(initialContextState);
+export const SiteContext = React.createContext<MovieContextInterface>(initialContextState);
 
-const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+const SiteContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     const [favourites, setFavourites] = useState<number[]>([]);
     const [myReviews, setMyReviews] = useState<Review[]>([]);
     const [mustWatch, setMustWatch] = useState<number[]>([]);
+    const [mustWatchTV, setMustWatchTV] = useState<number[]>([]);
 
     const addToFavourites = useCallback((movie: BaseMovieProps) => {
         setFavourites((prevFavourites) => {
@@ -46,6 +53,15 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
         });
     }, []);
 
+    const addToMustWatchTV = useCallback((trendingTV: BaseTrendingTVProps) => {
+        setMustWatchTV((prevMustWatch) => {
+            if (!prevMustWatch.includes(trendingTV.id)) {
+                return [...prevMustWatch, trendingTV.id];
+            }
+            return prevMustWatch;
+        });
+    }, []);
+
     const addReview = (movie:BaseMovieProps, review: Review) => {
         setMyReviews( {...myReviews, [movie.id]: review } )
       };
@@ -58,9 +74,15 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
         setMustWatch((prevMustWatch) => prevMustWatch.filter((mId) => mId !== movie.id));
     }, []);
 
+    const removeFromMustWatchTV = useCallback((trendingTV: BaseTrendingTVProps) => {
+        setMustWatch((prevMustWatch) => prevMustWatch.filter((tvId) => tvId !== trendingTV.id));
+    }, []);
+
+    
+
 
     return (
-        <MoviesContext.Provider
+        <SiteContext.Provider
             value={{
                 favourites,
                 addToFavourites,
@@ -69,12 +91,15 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
                 mustWatch,
                 addToMustWatch,
                 removeFromMustWatch,
+                mustWatchTV,
+                addToMustWatchTV,
+                removeFromMustWatchTV,
                 
             }}
         >
             {children}
-        </MoviesContext.Provider>
+        </SiteContext.Provider>
     );
 };
 
-export default MoviesContextProvider;
+export default SiteContextProvider;

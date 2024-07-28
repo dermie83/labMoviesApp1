@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { MoviesContext } from "../../contexts/moviesContext";
+import { SiteContext } from "../../contexts/siteContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles";
 import ratings from "./ratingCategories";
@@ -38,7 +38,7 @@ const ReviewForm: React.FC<BaseMovieProps> = (movie) => {
       };
     
       const navigate = useNavigate();
-      const context = useContext(MoviesContext);
+      const context = useContext(SiteContext);
       const [rating, setRating] = useState(3);
       const [open, setOpen] = useState(false);
     

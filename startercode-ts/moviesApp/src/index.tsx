@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
-import HomePage from "./pages/homePage";
+import MoviesHomePage from "./pages/moviesHomePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader';
 import UpcomingMoviesPage from './pages/upcomingMoviesPage';
-import MoviesContextProvider from "./contexts/moviesContext";
+import SiteContextProvider from "./contexts/siteContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import MustWatchMoviesPage from "./pages/mustWatchMoviesPage";
 import PopularMoviesPage from "./pages/popularMoviesPage";
@@ -34,7 +34,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <SiteHeader />
-          <MoviesContextProvider>
+          <SiteContextProvider>
             <Routes>
               <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
               <Route path="/reviews/:id" element={<MovieReviewPage/>} />
@@ -42,16 +42,16 @@ const App = () => {
               <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
               <Route path="/movies/mustwatch" element={<MustWatchMoviesPage />} />
               <Route path="/movies/popular" element={<PopularMoviesPage />} />
-              <Route path="/movies/persons" element={<PopularPersonsPage />} />
+              <Route path="/cast" element={<PopularPersonsPage />} />
               <Route path="/tv/trendingNow" element={<TrendingTVPage />} />
               <Route path="/tv/mustwatch" element={<MustWatchTrendingTVPage />} />
               <Route path="/movies/:id" element={<MoviePage />} />
               <Route path="/castmember/:id" element={<CastDetailsPage />} />
-              {/* <Route path="/" element={<HomePage />} /> */}
+              <Route path="/movies" element={<MoviesHomePage />} />
               <Route path="/" element={<LandingPage />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
-          </MoviesContextProvider>
+          </SiteContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider> 

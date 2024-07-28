@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import MovieListHeader from "../components/headerList";
 import { MemoryRouter } from "react-router";
-import MoviesContextProvider from "../contexts/moviesContext";
+import SiteContextProvider from "../contexts/siteContext";
 // import React from 'react';
 
 const meta = {
@@ -9,7 +9,7 @@ const meta = {
     component: MovieListHeader,
     decorators: [
       (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-      (Story) => <MoviesContextProvider>{Story()}</MoviesContextProvider>,
+      (Story) => <SiteContextProvider>{Story()}</SiteContextProvider>,
     ],
   } satisfies Meta<typeof MovieListHeader>;
   

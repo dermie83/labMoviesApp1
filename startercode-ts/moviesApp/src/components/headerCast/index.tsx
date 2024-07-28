@@ -4,7 +4,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { CastMembers } from "../../types/interfaces"; 
+import { BaseCastMembersProps } from "../../types/interfaces"; 
 
 const styles = {
     root: {  
@@ -21,7 +21,7 @@ const styles = {
 
 
 
-const CastHeader: React.FC<CastMembers> = (cast) => {
+const CastHeader: React.FC<BaseCastMembersProps> = (cast) => {
   
   return (
     <Paper component="div" sx={styles.root}>

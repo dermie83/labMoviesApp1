@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MovieCard from "../components/movieCard";
 import SampleMovie from "./sampleData";
 import { MemoryRouter } from "react-router";
-import MoviesContextProvider from "../contexts/moviesContext";
+import SiteContextProvider from "../contexts/siteContext";
 // import { action } from "@storybook/addon-actions";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 // import React from 'react';
@@ -12,7 +12,7 @@ const meta = {
   component: MovieCard,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-    (Story) => <MoviesContextProvider>{Story()}</MoviesContextProvider>,
+    (Story) => <SiteContextProvider>{Story()}</SiteContextProvider>,
   ],
 } satisfies Meta<typeof MovieCard>;
 

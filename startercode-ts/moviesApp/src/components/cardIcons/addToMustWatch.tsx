@@ -1,11 +1,11 @@
 import React, {MouseEvent, useContext} from "react";
-import { MoviesContext } from "../../contexts/moviesContext";
+import { SiteContext } from "../../contexts/siteContext";
 import IconButton from "@mui/material/IconButton";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import {BaseMovieProps} from "../../types/interfaces"
 
 const AddToPlaylistIcon: React.FC<BaseMovieProps> = (movie) => {
-  const context = useContext(MoviesContext);
+  const context = useContext(SiteContext);
 
   const onUserSelect = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
