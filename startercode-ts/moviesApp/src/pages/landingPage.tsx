@@ -22,7 +22,7 @@ const LandingPage: React.FC = () => {
             TV Info ...
           </Button>
         </Link>
-        <Link to="/movies/persons">
+        <Link to="/cast">
           <Button variant="outlined" size="medium" color="primary">
             Cast Info ...
           </Button>
