@@ -41,6 +41,7 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
 
 
   return (
+
     <Card sx={styles.card}>
       <CardHeader 
         title={
@@ -48,6 +49,12 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
             {movie.title}{" "}
               </Typography>
         }
+        avatar={
+          isMustWatch ? (
+          <Avatar sx={styles.mustWatchAvatar}>
+            <AddTaskIcon fontSize="small"/>
+          </Avatar>) : null }
+      
         />
       <CardMedia
         sx={styles.media}
@@ -57,21 +64,15 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
             : img
         }
       />
-      <Grid container>
-      <CardHeader
-        avatar={
-          isMustWatch ? (
-          <Avatar sx={styles.mustWatchAvatar}>
-            <AddTaskIcon fontSize="small"/>
-          </Avatar>) : null }
-        />
+      <Grid >
         <CardHeader
           avatar={
             isFavourite ? (
             <Avatar sx={styles.favouriteAvatar}>
               <FavoriteIcon fontSize="small"/>
             </Avatar>) : null }
-        /></Grid>
+        />
+      </Grid>
       <CardContent>
         <Grid container>
           <Grid item xs={6}>

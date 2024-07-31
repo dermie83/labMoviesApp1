@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../headerList";
+import Header from "../headerMovieList";
 import Grid from "@mui/material/Grid";
 import TrendingTVList from "../trendingTVList";
 import { TrendingTVListPageTemplateProps } from "../../types/interfaces";

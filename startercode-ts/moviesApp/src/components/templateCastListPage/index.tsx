@@ -1,5 +1,5 @@
 import React from "react";
-// import Header from "../headerMovieList";
+import Header from "../headerCastList";
 import Grid from "@mui/material/Grid";
 import CastList from "../castList";
 import { CastListPageTemplateProps } from "../../types/interfaces";
@@ -10,12 +10,12 @@ const styles = {
   }
 };
 
-const CastListPageTemplate: React.FC<CastListPageTemplateProps> = ({ cast })=> {
+const CastListPageTemplate: React.FC<CastListPageTemplateProps> = ({ cast, title })=> {
   return (
     <Grid container sx={styles.root}>
-      {/* <Grid item xs={12}>
+      <Grid item xs={12}>
         <Header title={title} />
-      </Grid> */}
+      </Grid>
       <Grid item container spacing={5}>
         <CastList
           cast={cast}
