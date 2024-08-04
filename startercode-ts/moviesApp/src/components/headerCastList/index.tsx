@@ -1,8 +1,8 @@
 import React from "react";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import { Button, ButtonGroup } from "@mui/material";
-import { Link } from "react-router-dom";
+// import { Button, ButtonGroup } from "@mui/material";
+// import { Link } from "react-router-dom";
 
 
 const styles = {
@@ -19,7 +19,7 @@ interface HeaderProps {
     title: string;
 }
 
-const Header: React.FC<HeaderProps> = (headerProps) => {
+const CastHeader: React.FC<HeaderProps> = (headerProps) => {
     const title = headerProps.title
 
     return (
@@ -27,8 +27,8 @@ const Header: React.FC<HeaderProps> = (headerProps) => {
             <Typography variant="h4" component="h3">
                 {title}
             </Typography>
-            <ButtonGroup variant="contained" aria-label="Basic button group">
-            <Link to="/movies">
+            {/* <ButtonGroup variant="contained" aria-label="Basic button group">
+                <Link to="/movies">
                 <Button variant="outlined" size="medium" color="primary">
                     Movies Info ...
                 </Button>
@@ -43,10 +43,10 @@ const Header: React.FC<HeaderProps> = (headerProps) => {
                     Cast Info ...
                 </Button>
                 </Link>
-            </ButtonGroup>
+            </ButtonGroup> */}
         </Paper>
         
     );
 };
 
-export default Header;
+export default CastHeader;

@@ -1,14 +1,14 @@
 import React, { useContext } from "react"
-import PageTemplate from "../components/templateTrendingTVListPage";
+import PageTemplate from "../components/templateTVListPage";
 import { SiteContext } from "../contexts/siteContext";
 import { useQueries } from "react-query";
 import { getTVShow } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
-import TrendingTVFilterUI, {
+import TVFilterUI, {
   titleFilter,
   genreFilter,
-} from "../components/trendingTVFilterUI";
+} from "../components/tVFilterUI";
 import RemoveFromMustWatch from "../components/cardIcons/removeFromMustWatchTV";
 
 const titleFiltering = {
@@ -61,7 +61,7 @@ const MustWatchTrendingTVPage: React.FC = () => {
     <>
       <PageTemplate
         title="Must Watch Trending TV"
-        trendingTV={displayedTrendingTV}
+        tV={displayedTrendingTV}
         action={(trendingTV) => {
           return (
             <>
@@ -70,7 +70,7 @@ const MustWatchTrendingTVPage: React.FC = () => {
           );
         }}
       />
-      <TrendingTVFilterUI
+      <TVFilterUI
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}

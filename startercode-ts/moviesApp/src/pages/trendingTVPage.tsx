@@ -1,12 +1,12 @@
 import React from "react";
-import PageTemplate from "../components/templateTrendingTVListPage";
+import PageTemplate from "../components/templateTVListPage";
 import { getTrendingTV } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
-import TrendingTVFilterUI, {
+import TVFilterUI, {
   titleFilter,
   genreFilter,
-} from "../components/trendingTVFilterUI";
-import { BaseTrendingTVProps, DiscoverTrendingTV } from "../types/interfaces";
+} from "../components/tVFilterUI";
+import { BaseTVProps, DiscoverTV } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToMustWatchTV from "../components/cardIcons/addToMustWatchTV";
@@ -24,7 +24,7 @@ const genreFiltering = {
 };
 
 const TrendingTVPage: React.FC = () => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverTrendingTV, Error>("discover Trending TV", getTrendingTV);
+  const { data, error, isLoading, isError } = useQuery<DiscoverTV, Error>("discover Trending TV", getTrendingTV);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );
@@ -54,12 +54,12 @@ const TrendingTVPage: React.FC = () => {
     <>
       <PageTemplate
         title="Trending On TV NOW"
-        trendingTV={displayedTrendingTV}
-        action={(trendingTV: BaseTrendingTVProps) => {
+        tV={displayedTrendingTV}
+        action={(trendingTV: BaseTVProps) => {
           return <AddToMustWatchTV {...trendingTV} />
         }}
       />
-      <TrendingTVFilterUI
+      <TVFilterUI
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}

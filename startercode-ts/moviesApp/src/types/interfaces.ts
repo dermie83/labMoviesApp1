@@ -35,7 +35,7 @@ export interface BaseMovieProps {
       }[];
   }
 
-  export interface TVDetailsProps extends BaseTrendingTVProps {
+  export interface TVDetailsProps extends BaseTVProps {
     genres: {
       id: number;
       name: string;
@@ -72,12 +72,12 @@ export interface BaseMovieProps {
     title: string;
   }
 
-  export interface BaseTrendingTVListProps { 
-    trendingTV: [BaseTrendingTVProps];
-    action: (m: BaseTrendingTVProps) => React.ReactNode;
+  export interface BaseTVListProps { 
+    tV: [BaseTVProps];
+    action: (m: BaseTVProps) => React.ReactNode;
   }
 
-  export interface TrendingTVListPageTemplateProps extends BaseTrendingTVListProps {
+  export interface TVListPageTemplateProps extends BaseTVListProps {
     title: string;
   }
 
@@ -144,14 +144,14 @@ export interface CastMember {
     results: CastMember[];
   }
 
-  export interface DiscoverTrendingTV {
+  export interface DiscoverTV {
     page: number;	
     total_pages: number;
     total_results: number;
-    results: BaseTrendingTVProps[];
+    results: BaseTVProps[];
   }
 
-  export interface BaseTrendingTVProps {
+  export interface BaseTVProps {
     id: number;
     name: string;
     backdrop_path?: string;

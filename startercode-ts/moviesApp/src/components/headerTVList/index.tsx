@@ -28,22 +28,17 @@ const MovieHeader: React.FC<HeaderProps> = (headerProps) => {
                 {title}
             </Typography>
             <ButtonGroup variant="contained" aria-label="Basic button group">
-                <Link to="/movies">
+                <Link to="/tv/trendingNow">
                 <Button variant="outlined" size="medium" color="primary">
-                    Discover Movies
+                    Discover TV
                 </Button>
                 </Link>
-                <Link to="/movies/favourites">
+                {/* <Link to="/movies/upcoming">
                 <Button variant="outlined" size="medium" color="primary">
-                    My Favourites
+                    Upcoming...
                 </Button>
-                </Link>
-                <Link to="/movies/upcoming">
-                <Button variant="outlined" size="medium" color="primary">
-                    Upcoming Movies
-                </Button>
-                </Link>
-                <Link to="/movies/mustwatch">
+                </Link> */}
+                <Link to="/tv/mustwatch">
                 <Button variant="outlined" size="medium" color="primary">
                     My Must Watch
                 </Button>

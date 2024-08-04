@@ -28,14 +28,9 @@ const SiteHeader: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   const menuOptions = [
-    { label: "Landing Page", path: "/" },
-    { label: "Favorites", path: "/movies/favourites" },
-    { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "Must Watch", path: "/movies/mustwatch" },
-    { label: "Popular", path: "/movies/popular" },
+    { label: "Movies", path: "/movies" },
+    { label: "TV", path: "/tv/trendingNow" },
     { label: "Cast", path: "/cast" },
-    { label: "Trending TV", path: "/tv/trendingNow" },
-    { label: "Must Watch TV", path: "/tv/mustwatch" },
   ];
 
   const handleMenuSelect = (pageURL: string) => {
@@ -52,9 +47,6 @@ const SiteHeader: React.FC = () => {
         <Toolbar>
           <Typography variant="h4" sx={styles.title}>
             TMDB Client
-          </Typography>
-          <Typography variant="h6" sx={styles.title}>
-            All you ever wanted to know about Movies!
           </Typography>
           {isMobile ? (
             <>

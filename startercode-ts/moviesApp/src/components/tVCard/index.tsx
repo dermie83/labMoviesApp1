@@ -14,7 +14,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png';
 import Avatar from "@mui/material/Avatar";
-import { BaseTrendingTVProps } from "../../types/interfaces"; 
+import { BaseTVProps } from "../../types/interfaces"; 
 
 const styles = {
   card: { maxWidth: 345 },
@@ -27,15 +27,15 @@ const styles = {
   },
 };
 
-interface TrendingTVCardProps  {
-  trendingTV: BaseTrendingTVProps;
-  action: (m: BaseTrendingTVProps) => React.ReactNode;
+interface TVCardProps  {
+  tV: BaseTVProps;
+  action: (m: BaseTVProps) => React.ReactNode;
 }
 
-const TrendingTVCard: React.FC<TrendingTVCardProps> = ({trendingTV, action}) => {
+const TVCard: React.FC<TVCardProps> = ({tV, action}) => {
   
   const { mustWatchTV } = useContext(SiteContext);
-  const isMustWatchTV = mustWatchTV.find((id) => id === trendingTV.id)? true : false;
+  const isMustWatchTV = mustWatchTV.find((id) => id === tV.id)? true : false;
 
 
   return (
@@ -43,8 +43,8 @@ const TrendingTVCard: React.FC<TrendingTVCardProps> = ({trendingTV, action}) => 
       <CardMedia
         sx={styles.media}
         image={
-          trendingTV.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${trendingTV.poster_path}`
+          tV.poster_path
+            ? `https://image.tmdb.org/t/p/w500/${tV.poster_path}`
             : img
         }
       />
@@ -62,19 +62,19 @@ const TrendingTVCard: React.FC<TrendingTVCardProps> = ({trendingTV, action}) => 
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {trendingTV.first_air_date}
+              {tV.first_air_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
-              {"  "} {trendingTV.vote_average}{" "}
+              {"  "} {tV.vote_average}{" "}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-      {action(trendingTV)}
+      {action(tV)}
         <Link to={``}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
@@ -85,4 +85,4 @@ const TrendingTVCard: React.FC<TrendingTVCardProps> = ({trendingTV, action}) => 
   );
 }
 
-export default TrendingTVCard;
+export default TVCard;

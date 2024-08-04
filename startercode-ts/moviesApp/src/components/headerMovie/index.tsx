@@ -1,12 +1,6 @@
 import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import AddTaskIcon from '@mui/icons-material/AddTask';
 import { MovieDetailsProps } from "../../types/interfaces"; 
 
 const styles = {
@@ -17,50 +11,17 @@ const styles = {
     flexWrap: "wrap",
     padding: 1.5,
   },
-  avatar: {
-    backgroundColor: "rgb(255, 0, 0)",
-  },
+
 };
 
 const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
-
-  // Get favourite movies from local storage.
-  const favourites = JSON.parse(localStorage.getItem("favourites") || '[]');
-  const isFavourite = favourites.find((favourite: { id: number; }) => favourite.id === movie.id);
-
-  // Get must watch movies from local storage.
-  const mustWatch = JSON.parse(localStorage.getItem("must_watch") || '[]');
-  const isMustWatch = mustWatch.find((must_watch: { id: number; }) => must_watch.id === movie.id);
-
-  
   return (
     <Paper component="div" sx={styles.root}>
-      <IconButton aria-label="go back">
-        <ArrowBackIcon color="primary" fontSize="large" />
-      </IconButton>
-      {
-         isFavourite ? (
-            <Avatar sx={styles.avatar}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : null
-        }
-        {
-         isMustWatch ? (
-            <Avatar sx={styles.avatar}>
-              <AddTaskIcon />
-            </Avatar>
-          ) : null
-        }
-
       <Typography variant="h4" component="h3">
         {movie.title}{"   "}
         <br />
         <span>{`${movie.tagline}`} </span>
       </Typography>
-      <IconButton aria-label="go forward">
-        <ArrowForwardIcon color="primary" fontSize="large" />
-      </IconButton>
     </Paper>
   );
 };

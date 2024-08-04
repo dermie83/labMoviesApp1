@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import FilterCard from "../filterTrendingTVCard";
+import FilterCard from "../filterTVCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import { BaseTrendingTVProps } from "../../types/interfaces";
+import { BaseTVProps } from "../../types/interfaces";
 
-export const titleFilter = (trendingTV: BaseTrendingTVProps, value: string): boolean => {
-    return trendingTV.name.toLowerCase().search(value.toLowerCase()) !== -1;
+export const titleFilter = (tV: BaseTVProps, value: string): boolean => {
+    return tV.name.toLowerCase().search(value.toLowerCase()) !== -1;
 };
 
-export const genreFilter = (trendingTV: BaseTrendingTVProps, value: string) => {
+export const genreFilter = (tV: BaseTVProps, value: string) => {
     const genreId = Number(value);
-    const genreIds = trendingTV.genre_ids;
+    const genreIds = tV.genre_ids;
     return genreId > 0 && genreIds ? genreIds.includes(genreId) : true;
 };
 
@@ -26,14 +26,14 @@ const styles = {
     },
 };
 
-interface TrendingTVFilterUIProps {
+interface TVFilterUIProps {
     onFilterValuesChange: (f: string, s: string) => void;
     titleFilter: string;
     genreFilter: string;
 }
 
 
-const TrendingTVFilterUI: React.FC<TrendingTVFilterUIProps> = ({ onFilterValuesChange, titleFilter, genreFilter }) => {
+const TVFilterUI: React.FC<TVFilterUIProps> = ({ onFilterValuesChange, titleFilter, genreFilter }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
@@ -61,4 +61,4 @@ const TrendingTVFilterUI: React.FC<TrendingTVFilterUIProps> = ({ onFilterValuesC
     );
 };
 
-export default TrendingTVFilterUI;
+export default TVFilterUI;
