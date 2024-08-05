@@ -42,7 +42,6 @@ const CastDetails: React.FC<BaseCastMembersProps> = (cast) => {
                     <Chip label="Genres" sx={styles.chipLabel} color="primary" />
                 </li>
                 <a href={cast.homepage} target="_blank">
-                {/* <a href={cast.homepage}> */}
                     <MovieIcon color="info"  fontSize="large"/>
                 </a>
             </Paper>

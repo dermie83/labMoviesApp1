@@ -12,6 +12,7 @@ const styles = {
 
 const MovieListPageTemplate: React.FC<MovieListPageTemplateProps> = ({ movies, title, action })=> {
   return (
+
     <Grid container sx={styles.root}>
       <Grid item xs={12}>
         <Header title={title} />
