@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PageTemplate from "../components/templateCastListPage";
 import { getCast } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
@@ -23,7 +23,14 @@ const genderFiltering = {
 };
 
 const CastMemberPage: React.FC = () => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverCast, Error>("cast", getCast);
+
+  const [page, setPage] = useState(1);
+  const { data, error, isLoading, isError, isPreviousData } = 
+  useQuery<DiscoverCast, Error>({
+      queryKey: ["/cast", page],
+      queryFn: () => getCast(page),
+      keepPreviousData: true,
+  });
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [nameFiltering, genderFiltering]
   );
@@ -49,8 +56,33 @@ const CastMemberPage: React.FC = () => {
   const castMembers = data ? data.results : [];
   const displayedCast = filterFunction(castMembers);
 
+  const prevPage = () => setPage((prev) => prev - 1);
+  const pageOne = () => setPage(1);
+  const pageTwo = () => setPage(2);
+  const pageThree = () => setPage(3);
+  const pageFour = () => setPage(4);
+  const pageFive = () => setPage(5);
+  const pageTen = () => setPage(10);
+  const nextPage = () => setPage((next) => next + 1);
+
   return (
     <>
+    <div className="pages__section">
+        <button onClick={prevPage} disabled={isPreviousData || page === 1}>
+          prev
+        </button>
+        <button onClick={pageOne}>1</button>
+        <button onClick={pageTwo}>2</button>
+        <button onClick={pageThree}>3</button>
+        <p>Page {page}</p>
+        <button onClick={pageFour}>4</button>
+        <button onClick={pageFive}>5</button>
+        <p>...</p>
+        <button onClick={pageTen}>10</button>
+        <button onClick={nextPage} disabled={isPreviousData || page === data?.total_pages}>
+          Next
+        </button>
+    </div>
       <PageTemplate
         title="Discover Cast"
         cast={displayedCast}

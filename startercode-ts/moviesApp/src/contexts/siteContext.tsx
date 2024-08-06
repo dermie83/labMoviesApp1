@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { BaseMovieProps, Review, BaseTrendingTVProps } from "../types/interfaces";
+import { BaseMovieProps, Review, BaseTVProps } from "../types/interfaces";
 
 
 interface MovieContextInterface {
@@ -11,8 +11,8 @@ interface MovieContextInterface {
     addToMustWatch: ((movie: BaseMovieProps) => void);
     removeFromMustWatch: ((movie: BaseMovieProps) => void);
     mustWatchTV: number[];
-    addToMustWatchTV: ((trendingTV: BaseTrendingTVProps) => void);
-    removeFromMustWatchTV: ((trendingTV: BaseTrendingTVProps) => void);
+    addToMustWatchTV: ((tV: BaseTVProps) => void);
+    removeFromMustWatchTV: ((tV: BaseTVProps) => void);
 }
 const initialContextState: MovieContextInterface = {
     favourites: [],
@@ -53,10 +53,10 @@ const SiteContextProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
         });
     }, []);
 
-    const addToMustWatchTV = useCallback((trendingTV: BaseTrendingTVProps) => {
+    const addToMustWatchTV = useCallback((tV: BaseTVProps) => {
         setMustWatchTV((prevMustWatch) => {
-            if (!prevMustWatch.includes(trendingTV.id)) {
-                return [...prevMustWatch, trendingTV.id];
+            if (!prevMustWatch.includes(tV.id)) {
+                return [...prevMustWatch, tV.id];
             }
             return prevMustWatch;
         });
@@ -74,8 +74,8 @@ const SiteContextProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
         setMustWatch((prevMustWatch) => prevMustWatch.filter((mId) => mId !== movie.id));
     }, []);
 
-    const removeFromMustWatchTV = useCallback((trendingTV: BaseTrendingTVProps) => {
-        setMustWatch((prevMustWatch) => prevMustWatch.filter((tvId) => tvId !== trendingTV.id));
+    const removeFromMustWatchTV = useCallback((tV: BaseTVProps) => {
+        setMustWatch((prevMustWatch) => prevMustWatch.filter((tvId) => tvId !== tV.id));
     }, []);
 
     

@@ -9,6 +9,7 @@ import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
+import { useState } from 'react';
 
 const titleFiltering = {
   name: "title",
@@ -22,7 +23,14 @@ const genreFiltering = {
 };
 
 const UpcomingMoviesPage: React.FC = () => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("upcoming", getUpcomingMovies);
+
+  const [page, setPage] = useState(1);
+  const { data, error, isLoading, isError, isPreviousData } = 
+  useQuery<DiscoverMovies, Error>({
+    queryKey: ["/movies/upcoming", page],
+    queryFn: () => getUpcomingMovies(page),
+    keepPreviousData: true,
+  });
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );
@@ -46,10 +54,35 @@ const UpcomingMoviesPage: React.FC = () => {
 
   const movies = data ? data.results : [];
   const upcomingMovies = filterFunction(movies);
+
+  const prevPage = () => setPage((prev) => prev - 1);
+  const pageOne = () => setPage(1);
+  const pageTwo = () => setPage(2);
+  const pageThree = () => setPage(3);
+  const pageFour = () => setPage(4);
+  const pageFive = () => setPage(5);
+  const pageTen = () => setPage(10);
+  const nextPage = () => setPage((next) => next + 1);
   
 
   return (
     <>
+    <div className="pages__section">
+        <button onClick={prevPage} disabled={isPreviousData || page === 1}>
+          prev
+        </button>
+        <button onClick={pageOne}>1</button>
+        <button onClick={pageTwo}>2</button>
+        <button onClick={pageThree}>3</button>
+        <p>Page {page}</p>
+        <button onClick={pageFour}>4</button>
+        <button onClick={pageFive}>5</button>
+        <p>...</p>
+        <button onClick={pageTen}>10</button>
+        <button onClick={nextPage} disabled={isPreviousData || page === data?.total_pages}>
+          Next
+        </button>
+    </div>
       <PageTemplate
         title='Upcoming Movies'
         movies={upcomingMovies}
