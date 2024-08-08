@@ -1,22 +1,21 @@
 import React from "react";
 import CastHeader from "../headerCast";
 import Grid from "@mui/material/Grid";
-
-
 import { BaseCastMembersProps } from "../../types/interfaces";
+import { ImageListItem } from "@mui/material";
 
 
-// const styles = {
-//     gridListRoot: {
-//         display: "flex",
-//         flexWrap: "wrap",
-//         justifyContent: "space-around",
-//     },
-//     gridListTile: {
-//         width: 450,
-//         height: '100vh',
-//     },
-// };
+const styles = {
+    gridListRoot: {
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+    },
+    gridListTile: {
+        width: 330,
+        height: '100vh',
+    },
+};
 
 interface TemplateCastPageProps {
     cast: BaseCastMembersProps;
@@ -33,23 +32,18 @@ const TemplateCastPage: React.FC<TemplateCastPageProps> = ({cast, children}) => 
             <Grid container spacing={5} style={{ padding: "15px" }}>
                 <Grid item xs={3}>
                     <div>
-                        {/* <ImageList cols={1}>
-                            {images.map((image: MovieImage) => (
-                                <ImageListItem
-                                    key={image.file_path}
-                                    sx={styles.gridListTile}
-                                    cols={1}
-                                >
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                                        alt={'Image alternative'}
-                                    />
-                                </ImageListItem>
-                            ))}
-                        </ImageList> */}
+                        <ImageListItem
+                            key={cast.profile_path}
+                            sx={styles.gridListTile}
+                            cols={1}
+                            >
+                            <img
+                                src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
+                                alt={'Image alternative'}
+                            />
+                        </ImageListItem>
                     </div>
                 </Grid>
-
                 <Grid item xs={9}>
                     {children}
                 </Grid>

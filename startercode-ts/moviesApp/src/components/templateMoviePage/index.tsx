@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import MovieHeader from "../headerMovie";
 import Grid from "@mui/material/Grid";
 import ImageList from "@mui/material/ImageList";
@@ -7,18 +7,19 @@ import { getMovieImages } from "../../api/tmdb-api";
 import { MovieImage, MovieDetailsProps } from "../../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from '../spinner';
+import { Box } from "@mui/material";
 
-const styles = {
-    gridListRoot: {
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-    },
-    gridListTile: {
-        width: 450,
-        height: '100vh',
-    },
-};
+// const styles = {
+//     gridListRoot: {
+//         display: "flex",
+//         flexWrap: "wrap",
+//         justifyContent: "space-around",
+//     },
+//     gridListTile: {
+//         width: 450,
+//         height: '100vh',
+//     },
+// };
 
 interface TemplateMoviePageProps {
     movie: MovieDetailsProps;
@@ -48,27 +49,23 @@ const TemplateMoviePage: React.FC<TemplateMoviePageProps> = ({movie, children}) 
         <>
             <MovieHeader {...movie} />
 
-            <Grid container spacing={5} style={{ padding: "15px" }}>
-                <Grid item xs={3}>
-                    <div>
-                        <ImageList cols={1}>
+            <Grid container spacing={1} style={{ padding: "15px" }}>
+                <Grid item xs={5}>
+                    <Box sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
+                        <ImageList variant="masonry" cols={3} gap={8}>
                             {images.map((image: MovieImage) => (
-                                <ImageListItem
-                                    key={image.file_path}
-                                    sx={styles.gridListTile}
-                                    cols={1}
-                                >
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                                        alt={'Image alternative'}
+                            <ImageListItem key={image.file_path}>
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                                    alt={'Image alternative'}
+                                    loading="lazy"
                                     />
-                                </ImageListItem>
+                            </ImageListItem>
                             ))}
                         </ImageList>
-                    </div>
+                    </Box>
                 </Grid>
-
-                <Grid item xs={9}>
+                <Grid item xs={5}>
                     {children}
                 </Grid>
             </Grid>

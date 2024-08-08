@@ -5,11 +5,11 @@ import PageTemplate from "../components/templateCastPage";
 import { getCastMember } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
-import { CastDetailsProps } from "../types/interfaces";
+import { BaseCastMembersProps } from "../types/interfaces";
 
 const CastDetailsPage: React.FC= () => {
   const { id } = useParams();
-  const { data: cast, error, isLoading, isError } = useQuery<CastDetailsProps, Error>(
+  const { data: cast, error, isLoading, isError } = useQuery<BaseCastMembersProps, Error>(
     ["cast", id],
     ()=> getCastMember(id||"")
   );

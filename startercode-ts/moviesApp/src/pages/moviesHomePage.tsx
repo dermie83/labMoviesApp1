@@ -10,7 +10,6 @@ import { BaseMovieProps, DiscoverMovies } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
-// import { Pagination } from "@mui/material";
 
 
 const titleFiltering = {
@@ -65,13 +64,11 @@ const MoviesHomePage: React.FC = () => {
   const pageOne = () => setPage(1);
   const pageTwo = () => setPage(2);
   const pageThree = () => setPage(3);
-  const pageFour = () => setPage(4);
-  const pageFive = () => setPage(5);
-  const pageTen = () => setPage(10);
   const nextPage = () => setPage((next) => next + 1);
 
   return (
     <>
+
     <div className="pages__section">
         <button onClick={prevPage} disabled={isPreviousData || page === 1}>
           prev
@@ -79,14 +76,11 @@ const MoviesHomePage: React.FC = () => {
         <button onClick={pageOne}>1</button>
         <button onClick={pageTwo}>2</button>
         <button onClick={pageThree}>3</button>
-        <p>Page {page}</p>
-        <button onClick={pageFour}>4</button>
-        <button onClick={pageFive}>5</button>
-        <p>...</p>
-        <button onClick={pageTen}>10</button>
+        --------
         <button onClick={nextPage} disabled={isPreviousData || page === data?.total_pages}>
           Next
         </button>
+        <p>Page {page}</p>
     </div>
       <PageTemplate
         title="Discover Movies"

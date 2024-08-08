@@ -59,9 +59,6 @@ const UpcomingMoviesPage: React.FC = () => {
   const pageOne = () => setPage(1);
   const pageTwo = () => setPage(2);
   const pageThree = () => setPage(3);
-  const pageFour = () => setPage(4);
-  const pageFive = () => setPage(5);
-  const pageTen = () => setPage(10);
   const nextPage = () => setPage((next) => next + 1);
   
 
@@ -74,14 +71,11 @@ const UpcomingMoviesPage: React.FC = () => {
         <button onClick={pageOne}>1</button>
         <button onClick={pageTwo}>2</button>
         <button onClick={pageThree}>3</button>
-        <p>Page {page}</p>
-        <button onClick={pageFour}>4</button>
-        <button onClick={pageFive}>5</button>
-        <p>...</p>
-        <button onClick={pageTen}>10</button>
+        --------
         <button onClick={nextPage} disabled={isPreviousData || page === data?.total_pages}>
           Next
         </button>
+        <p>Page {page}</p>
     </div>
       <PageTemplate
         title='Upcoming Movies'

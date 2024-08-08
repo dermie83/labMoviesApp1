@@ -108,10 +108,10 @@ export interface BaseCastMembersProps {
     homepage: string,
 }
 
-export interface CastMember {
-  id: number
-  biography:string;
-}
+// export interface CastMember {
+//   id: number
+//   biography:string;
+// }
 
 
   export interface GenreData {
@@ -141,7 +141,7 @@ export interface CastMember {
     page: number;	
     total_pages: number;
     total_results: number;
-    results: CastMember[];
+    results: BaseCastMembersProps[];
   }
 
   export interface DiscoverTV {
