@@ -10,6 +10,7 @@ import { BaseTVProps, DiscoverTV } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToMustWatchTV from "../components/cardIcons/addToMustWatchTV";
+import { Grid } from "@mui/material";
 
 
 const titleFiltering = {
@@ -57,29 +58,28 @@ const TrendingTVPage: React.FC = () => {
   const displayedTrendingTV = filterFunction(trendingTV);
 
   const prevPage = () => setPage((prev) => prev - 1);
-  const pageOne = () => setPage(1);
-  const pageTwo = () => setPage(2);
-  const pageThree = () => setPage(3);
   const nextPage = () => setPage((next) => next + 1);
 
   return (
     <>
-    <div className="pages__section">
-        <button onClick={prevPage} disabled={isPreviousData || page === 1}>
-          prev
-        </button>
-        <button onClick={pageOne}>1</button>
-        <button onClick={pageTwo}>2</button>
-        <button onClick={pageThree}>3</button>
-        --------
-        <button onClick={nextPage} disabled={isPreviousData || page === data?.total_pages}>
-          Next
-        </button>
-        <p>Page {page}</p>
-    </div>
+    <Grid container direction="row" justifyContent="center" alignItems="center">
+      <div className="pages__section">
+          <button onClick={prevPage} disabled={isPreviousData || page === 1}>
+            prev
+          </button>
+      </div>
+      <div>
+          <p>Page{page}</p>
+      </div>
+      <div>
+          <button onClick={nextPage} disabled={isPreviousData || page === data?.total_pages}>
+            Next
+          </button>
+      </div>
+    </Grid>
       <PageTemplate
         title="Trending On TV NOW"
-        tV={displayedTrendingTV}
+        tvShow={displayedTrendingTV}
         action={(trendingTV: BaseTVProps) => {
           return <AddToMustWatchTV {...trendingTV} />
         }}
@@ -89,6 +89,21 @@ const TrendingTVPage: React.FC = () => {
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
       />
+      <Grid container direction="row" justifyContent="center" alignItems="center">
+      <div className="pages__section">
+          <button onClick={prevPage} disabled={isPreviousData || page === 1}>
+            prev
+          </button>
+      </div>
+      <div>
+          <p>Page{page}</p>
+      </div>
+      <div>
+          <button onClick={nextPage} disabled={isPreviousData || page === data?.total_pages}>
+            Next
+          </button>
+      </div>
+    </Grid>
     </>
   );
 };

@@ -1,39 +1,39 @@
 import React, { useState } from "react";
-import PageTemplate from "../components/templateCastListPage";
-import { getCast } from "../api/tmdb-api";
+import PageTemplate from "../components/templateTVListPage";
+import { getTVShows } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
-import CastFilterUI, {
-  nameFilter, genderFilter
-} from "../components/castFilterUI";
-import { DiscoverCast } from "../types/interfaces";
+import TVFilterUI, {
+  titleFilter,
+  genreFilter,
+} from "../components/tVFilterUI";
+import { BaseTVProps, DiscoverTV } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
+import AddToMustWatchTV from "../components/cardIcons/addToMustWatchTV";
 import { Grid } from "@mui/material";
 
 
-const nameFiltering = {
-  name: "name",
+const titleFiltering = {
+  name: "title",
   value: "",
-  condition: nameFilter,
+  condition: titleFilter,
+};
+const genreFiltering = {
+  name: "genre",
+  value: "0",
+  condition: genreFilter,
 };
 
-const genderFiltering = {
-  name: "gender",
-  value: "",
-  condition: genderFilter,
-};
-
-const CastMemberPage: React.FC = () => {
-
+const TVHomePage: React.FC = () => {
+  
   const [page, setPage] = useState(1);
-  const { data, error, isLoading, isError, isPreviousData } = 
-  useQuery<DiscoverCast, Error>({
-      queryKey: ["/cast", page],
-      queryFn: () => getCast(page),
-      keepPreviousData: true,
+  const { data, error, isLoading, isError, isPreviousData } = useQuery<DiscoverTV, Error>({
+    queryKey: ["/tvShows", page],
+      queryFn: () => getTVShows(page),
+    keepPreviousData: true
   });
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [nameFiltering, genderFiltering]
+    [titleFiltering, genreFiltering]
   );
 
   if (isLoading) {
@@ -48,14 +48,14 @@ const CastMemberPage: React.FC = () => {
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
     const updatedFilterSet =
-      type === "cast"
+      type === "title"
         ? [changedFilter, filterValues[1]]
         : [filterValues[0], changedFilter];
     setFilterValues(updatedFilterSet);
   };
 
-  const castMembers = data ? data.results : [];
-  const displayedCast = filterFunction(castMembers);
+  const tvShows = data ? data.results : [];
+  const displayTvShows = filterFunction(tvShows);
 
   const prevPage = () => setPage((prev) => prev - 1);
   const nextPage = () => setPage((next) => next + 1);
@@ -78,13 +78,16 @@ const CastMemberPage: React.FC = () => {
       </div>
     </Grid>
       <PageTemplate
-        title="Discover Cast"
-        cast={displayedCast}
+        title="TV SHOWS"
+        tvShow={displayTvShows}
+        action={(tV: BaseTVProps) => {
+          return <AddToMustWatchTV {...tV} />
+        }}
       />
-      <CastFilterUI
+      <TVFilterUI
         onFilterValuesChange={changeFilterValues}
-        nameFilter={filterValues[0].value}
-        genderFilter={filterValues[1].value}
+        titleFilter={filterValues[0].value}
+        genreFilter={filterValues[1].value}
       />
       <Grid container direction="row" justifyContent="center" alignItems="center">
       <div className="pages__section">
@@ -104,4 +107,4 @@ const CastMemberPage: React.FC = () => {
     </>
   );
 };
-export default CastMemberPage;
+export default TVHomePage;

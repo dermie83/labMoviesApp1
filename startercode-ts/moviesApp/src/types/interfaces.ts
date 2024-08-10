@@ -73,7 +73,7 @@ export interface BaseMovieProps {
   }
 
   export interface BaseTVListProps { 
-    tV: [BaseTVProps];
+    tvShow: [BaseTVProps];
     action: (m: BaseTVProps) => React.ReactNode;
   }
 
@@ -108,12 +108,6 @@ export interface BaseCastMembersProps {
     homepage: string,
 }
 
-// export interface CastMember {
-//   id: number
-//   biography:string;
-// }
-
-
   export interface GenreData {
     genres: {
       id: string;
@@ -132,7 +126,7 @@ export interface BaseCastMembersProps {
   
   export interface DiscoverMovies {
     page: number;	
-    total_pages: number;
+    total_pages?: number | undefined;
     total_results: number;
     results: BaseMovieProps[];
   }

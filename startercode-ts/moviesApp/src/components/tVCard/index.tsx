@@ -28,14 +28,14 @@ const styles = {
 };
 
 interface TVCardProps  {
-  tV: BaseTVProps;
+  tvShow: BaseTVProps;
   action: (m: BaseTVProps) => React.ReactNode;
 }
 
-const TVCard: React.FC<TVCardProps> = ({tV, action}) => {
+const TVCard: React.FC<TVCardProps> = ({tvShow, action}) => {
   
   const { mustWatchTV } = useContext(SiteContext);
-  const isMustWatchTV = mustWatchTV.find((id) => id === tV.id)? true : false;
+  const isMustWatchTV = mustWatchTV.find((id) => id === tvShow.id)? true : false;
 
 
   return (
@@ -43,13 +43,18 @@ const TVCard: React.FC<TVCardProps> = ({tV, action}) => {
       <CardMedia
         sx={styles.media}
         image={
-          tV.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${tV.poster_path}`
+          tvShow.poster_path
+            ? `https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`
             : img
         }
       />
         <Grid container>
               <CardHeader
+               title={
+                <Typography variant="h5" component="p">
+                  {tvShow.name}{" "}
+                    </Typography>
+              }
                 avatar={
                   isMustWatchTV ? (
                   <Avatar sx={styles.mustWatchAvatar}>
@@ -62,20 +67,20 @@ const TVCard: React.FC<TVCardProps> = ({tV, action}) => {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {tV.first_air_date}
+              {tvShow.first_air_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
-              {"  "} {tV.vote_average}{" "}
+              {"  "} {tvShow.vote_average}{" "}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-      {action(tV)}
-        <Link to={``}>
+      {action(tvShow)}
+        <Link to={`/tv/${tvShow.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>

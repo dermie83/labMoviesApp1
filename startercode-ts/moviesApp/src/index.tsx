@@ -17,6 +17,8 @@ import PopularPersonsPage from "./pages/castPage";
 import CastDetailsPage from "./pages/castDetailsPage";
 import TrendingTVPage from "./pages/trendingTVPage";
 import MustWatchTrendingTVPage from "./pages/mustWatchTVPage";
+import TVHomePage from "./pages/tvHomePage";
+import TVPage from "./pages/tvDetailsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,8 +44,10 @@ const App = () => {
               <Route path="/movies/mustwatch" element={<MustWatchMoviesPage />} />
               <Route path="/movies/popular" element={<PopularMoviesPage />} />
               <Route path="/cast" element={<PopularPersonsPage />} />
+              <Route path="/tv" element={<TVHomePage />} />
               <Route path="/tv/trendingNow" element={<TrendingTVPage />} />
               <Route path="/tv/mustwatch" element={<MustWatchTrendingTVPage />} />
+              <Route path="/tv/:id" element={<TVPage />} />
               <Route path="/movies/:id" element={<MoviePage />} />
               <Route path="/castmember/:id" element={<CastDetailsPage />} />
               <Route path="/movies" element={<MoviesHomePage />} />

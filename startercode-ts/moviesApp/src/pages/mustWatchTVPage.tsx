@@ -45,9 +45,9 @@ const MustWatchTrendingTVPage: React.FC = () => {
     return <Spinner />;
   }
 
-  const allTrendingTV = mustWatchTRendingTVQueries.map((q) => q.data);
-  const displayedTrendingTV = allTrendingTV
-    ? filterFunction(allTrendingTV)
+  const mustWatchTV = mustWatchTRendingTVQueries.map((q) => q.data);
+  const displayedTVShows = mustWatchTV
+    ? filterFunction(mustWatchTV)
     : [];
 
   const changeFilterValues = (type: string, value: string) => {
@@ -61,7 +61,7 @@ const MustWatchTrendingTVPage: React.FC = () => {
     <>
       <PageTemplate
         title="Must Watch Trending TV"
-        tV={displayedTrendingTV}
+        tvShow={displayedTVShows}
         action={(trendingTV) => {
           return (
             <>
