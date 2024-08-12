@@ -31,7 +31,6 @@ interface FilterTrendingTVCardProps {
   onUserInput: (f: FilterOption, s: string)  => void;
   titleFilter: string;
   genreFilter: string;
-  ratingFilter: string;
 }
 
 // const ratings = [
