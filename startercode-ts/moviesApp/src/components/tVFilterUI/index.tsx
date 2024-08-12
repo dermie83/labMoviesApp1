@@ -4,13 +4,13 @@ import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import { BaseTVProps } from "../../types/interfaces";
 
-export const titleFilter = (tV: BaseTVProps, value: string): boolean => {
-    return tV.name.toLowerCase().search(value.toLowerCase()) !== -1;
+export const titleFilter = (tvShow: BaseTVProps, value: string): boolean => {
+    return tvShow.name.toLowerCase().search(value.toLowerCase()) !== -1;
 };
 
-export const genreFilter = (tV: BaseTVProps, value: string) => {
+export const genreFilter = (tvShow: BaseTVProps, value: string) => {
     const genreId = Number(value);
-    const genreIds = tV.genre_ids;
+    const genreIds = tvShow.genre_ids;
     return genreId > 0 && genreIds ? genreIds.includes(genreId) : true;
 };
 

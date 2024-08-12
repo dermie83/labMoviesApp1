@@ -18,7 +18,7 @@ import CastDetailsPage from "./pages/castDetailsPage";
 import TrendingTVPage from "./pages/trendingTVPage";
 import MustWatchTrendingTVPage from "./pages/mustWatchTVPage";
 import TVHomePage from "./pages/tvHomePage";
-import TVPage from "./pages/tvDetailsPage";
+import TVPage from "./pages/tvShowDetailsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {

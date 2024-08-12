@@ -8,7 +8,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import SortIcon from '@mui/icons-material/Sort';
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { getTVGenres } from "../../api/tmdb-api";
@@ -32,7 +31,15 @@ interface FilterTrendingTVCardProps {
   onUserInput: (f: FilterOption, s: string)  => void;
   titleFilter: string;
   genreFilter: string;
+  ratingFilter: string;
 }
+
+// const ratings = [
+//   { id: "0", name: 'Rubish' },
+//   { id: "1", name: 'Good' },
+//   { id: "2", name: 'Very Good' },
+//   { id: "3", name: 'Fantastic' },
+// ];
 
 
 const FilterTrendingTVCard: React.FC<FilterTrendingTVCardProps> = ({ titleFilter, genreFilter, onUserInput }) => {
@@ -61,6 +68,7 @@ const FilterTrendingTVCard: React.FC<FilterTrendingTVCardProps> = ({ titleFilter
   const handleGenreChange = (e: SelectChangeEvent) => {
     handleChange(e, "genre", e.target.value)
   };
+
   return (
     <>
     <Card sx={styles.root} variant="outlined">
@@ -97,14 +105,6 @@ const FilterTrendingTVCard: React.FC<FilterTrendingTVCardProps> = ({ titleFilter
         </FormControl>
       </CardContent>
     </Card>
-    <Card sx={styles.root} variant="outlined">
-        <CardContent>
-          <Typography variant="h5" component="h1">
-            <SortIcon fontSize="large" />
-            Sort the tv.
-          </Typography>
-        </CardContent>
-      </Card>
       </>
   );
 }
