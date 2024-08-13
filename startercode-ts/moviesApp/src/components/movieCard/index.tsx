@@ -15,6 +15,9 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png';
 import Avatar from "@mui/material/Avatar";
+import red from '@mui/material/colors/red';
+import orange from '@mui/material/colors/orange';
+import green from '@mui/material/colors/green';
 import { BaseMovieProps } from "../../types/interfaces"; 
 
 const styles = {
@@ -32,6 +35,16 @@ interface MovieCardProps  {
   movie: BaseMovieProps;
   action: (m: BaseMovieProps) => React.ReactNode;
 }
+
+const setVoteClass = (vote: number) => {
+  if (vote >= 8) {
+    return green;
+  } else if (vote >= 6) {
+    return orange;
+  } else {
+    return red;
+  }
+};
 
 const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
   const { favourites } = useContext(SiteContext);
@@ -83,8 +96,8 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
+              <StarRateIcon fontSize="small" style={{ color: `tag ${setVoteClass(movie.vote_average)}` }}/>
+              {"  "} {movie.vote_average}
             </Typography>
           </Grid>
         </Grid>

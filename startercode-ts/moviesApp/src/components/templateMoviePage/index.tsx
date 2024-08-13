@@ -9,17 +9,6 @@ import { useQuery } from "react-query";
 import Spinner from '../spinner';
 import { Box } from "@mui/material";
 
-// const styles = {
-//     gridListRoot: {
-//         display: "flex",
-//         flexWrap: "wrap",
-//         justifyContent: "space-around",
-//     },
-//     gridListTile: {
-//         width: 450,
-//         height: '100vh',
-//     },
-// };
 
 interface TemplateMoviePageProps {
     movie: MovieDetailsProps;
