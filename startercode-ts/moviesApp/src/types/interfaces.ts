@@ -104,6 +104,7 @@ export interface BaseCastMembersProps {
     order: number
     also_known_as: string;
     birthday: string,
+    deathday: string;
     biography:string,
     homepage: string,
 }

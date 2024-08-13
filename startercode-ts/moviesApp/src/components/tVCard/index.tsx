@@ -32,6 +32,16 @@ interface TVCardProps  {
   action: (m: BaseTVProps) => React.ReactNode;
 }
 
+const setVoteClass = (vote: number) => {
+  if (vote >= 8) {
+    return "green";
+  } else if (vote >= 6) {
+    return "orange";
+  } else {
+    return "red";
+  }
+};
+
 const TVCard: React.FC<TVCardProps> = ({tvShow, action}) => {
   
   const { mustWatchTV } = useContext(SiteContext);
@@ -72,7 +82,7 @@ const TVCard: React.FC<TVCardProps> = ({tvShow, action}) => {
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
+              <StarRateIcon fontSize="large" style={{ color: `${setVoteClass(tvShow.vote_average)}`}}/>
               {"  "} {tvShow.vote_average}{" "}
             </Typography>
           </Grid>

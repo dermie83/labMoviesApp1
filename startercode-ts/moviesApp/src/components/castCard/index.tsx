@@ -32,6 +32,15 @@ const styles = {
 interface CastCardProps  {
     cast: BaseCastMembersProps;
   }
+  const setVoteClass = (vote: number) => {
+    if (vote >= 100) {
+      return "green";
+    } else if (vote >= 80) {
+      return "orange";
+    } else {
+      return "red";
+    }
+  };
 
 const CastMemberCard: React.FC<CastCardProps> = ({cast}) => {
     const imageSrc = `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
@@ -56,14 +65,8 @@ const CastMemberCard: React.FC<CastCardProps> = ({cast}) => {
         <Grid container>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
-              {}
-            </Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
-              {"  "} {}{" "}
+              <StarRateIcon fontSize="large" style={{ color: `${setVoteClass(cast.popularity)}` }}/>
+              {"  "}{cast.popularity}
             </Typography>
           </Grid>
         </Grid>
