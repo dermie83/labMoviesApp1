@@ -34,7 +34,8 @@ const styles = {
 
 const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
 
-    const [drawerOpen, setDrawerOpen] = useState(false); // New
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    console.log(movie.videos.results[0].key)
 
     return (
         <>
@@ -56,6 +57,9 @@ const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
                     </li>
                 ))}
                 <a href={movie.homepage}>
+                    <MovieIcon color="info"  fontSize="large"/>
+                </a>
+                <a href = {`https://www.youtube.com/watch?v=${movie.videos.results[0].key}`}>
                     <MovieIcon color="info"  fontSize="large"/>
                 </a>
             </Paper>

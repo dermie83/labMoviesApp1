@@ -26,7 +26,7 @@ export const getTVShows = (page = 1) => {
   
 export const getMovie = (id: string) => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}&append_to_response=videos`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to get movie data. Response status: ${response.status}`);
@@ -173,7 +173,7 @@ export const getTVShow = (id: string) => {
 
 
     // `https://api.themoviedb.org/3/movie/22/images?api_key=6abaacc8d8d55c12e7c3b2ff08754395`
-    // `https://api.themoviedb.org/3/movie/1022789?api_key=6abaacc8d8d55c12e7c3b2ff08754395`
+    //`https://api.themoviedb.org/3/movie/1022789?api_key=6abaacc8d8d55c12e7c3b2ff08754395&append_to_response=videos`
     // `https://api.themoviedb.org/3/person/popular?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US&page=1`
 
     // https://api.themoviedb.org/3/genre/movie/list?api_key=6abaacc8d8d55c12e7c3b2ff08754395&language=en-US

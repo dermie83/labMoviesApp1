@@ -10,7 +10,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 // import FavoriteIcon from "@mui/icons-material/Favorite";
 // import AddTaskIcon from '@mui/icons-material/AddTask';
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 // import img from '../../images/film-poster-placeholder.png';
