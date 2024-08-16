@@ -27,23 +27,6 @@ const CastHeader: React.FC<HeaderProps> = (headerProps) => {
             <Typography variant="h4" component="h3">
                 {title}
             </Typography>
-            {/* <ButtonGroup variant="contained" aria-label="Basic button group">
-                <Link to="/movies">
-                <Button variant="outlined" size="medium" color="primary">
-                    Movies Info ...
-                </Button>
-                </Link>
-                <Link to="/tv/trendingNow">
-                <Button variant="outlined" size="medium" color="primary">
-                    TV Info ...
-                </Button>
-                </Link>
-                <Link to="/cast">
-                <Button variant="outlined" size="medium" color="primary">
-                    Cast Info ...
-                </Button>
-                </Link>
-            </ButtonGroup> */}
         </Paper>
         
     );

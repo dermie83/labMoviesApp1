@@ -25,6 +25,16 @@ const styles = {
     },
 };
 
+const setVoteClass = (vote: number) => {
+    if (vote >= 8) {
+      return "green";
+    } else if (vote >= 6) {
+      return "orange";
+    } else {
+      return "red";
+    }
+  };
+
 const TVDetails: React.FC<TVDetailsProps> = (tvShow) => {
     return (
         <>
@@ -48,7 +58,7 @@ const TVDetails: React.FC<TVDetailsProps> = (tvShow) => {
             </Paper>
             <Paper component="ul" sx={styles.chipSet}>
                 <Chip
-                    icon={<StarRate />}
+                    icon={<StarRate style = {{color: `${setVoteClass(tvShow.vote_average)}`}}/>}
                     label={`${tvShow.vote_average}`}
                 />
                 <Chip label={`First Air Date: ${tvShow.first_air_date}`} />

@@ -18,9 +18,7 @@ const CastHeader: React.FC<BaseCastMembersProps> = (cast) => {
   return (
     <Paper component="div" sx={styles.root}>
       <Typography variant="h4" component="h3">
-        {cast.name}{"   "}
-        <br />
-        <span>{`${cast.original_name}`} </span>
+       {cast.name}
       </Typography>
     </Paper>
   );

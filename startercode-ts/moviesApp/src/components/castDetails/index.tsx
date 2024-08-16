@@ -47,10 +47,9 @@ const CastDetails: React.FC<BaseCastMembersProps> = (cast) => {
 
     return (
         <>
-            <Typography variant="h5" component="h3">
+            <Typography variant="h4" component="h3">
                 Overview
             </Typography>
-
             <Typography variant="h6" component="p">
                 {cast.biography}
             </Typography>
@@ -70,11 +69,13 @@ const CastDetails: React.FC<BaseCastMembersProps> = (cast) => {
                 <Chip
                      icon={<FacebookIcon />}
                 />
+                 <Chip
+                   label = {`Birth Place: ${cast.place_of_birth}`}
+                />
                 <CalendarIcon fontSize="medium"></CalendarIcon> 
-                {`Birthday: ${cast.birthday}`}{" "}
-                
+                    {`Birthday: ${cast.birthday}`}{" "}
                 <CalendarIcon fontSize="medium"></CalendarIcon>
-                {`Deathday: ${cast.deathday}`}
+                    {`Deathday: ${cast.deathday}`}
             </Paper>
         </>
     );

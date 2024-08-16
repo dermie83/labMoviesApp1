@@ -26,16 +26,37 @@ const styles = {
         margin: 0.5,
     },
     fab: {
+        marginTop: 8,
         position: "fixed",
-        top: 50,
+        top: 20,
         right: 2,
     },
 };
 
+const setVoteClass = (vote: number) => {
+    if (vote >= 8) {
+      return "green";
+    } else if (vote >= 6) {
+      return "orange";
+    } else {
+      return "red";
+    }
+  };
+
+  const setCountClass = (vote: number) => {
+    if (vote >= 1200) {
+      return "green";
+    } else if (vote >= 1000) {
+      return "orange";
+    } else {
+      return "red";
+    }
+  };
+
 const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
 
     const [drawerOpen, setDrawerOpen] = useState(false);
-    console.log(movie.videos.results[0].key)
+    // console.log(movie.videos.results[0].key)
 
     return (
         <>
@@ -67,11 +88,15 @@ const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
                 <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
                 <Chip
                     icon={<MonetizationIcon />}
-                    label={`${movie.revenue.toLocaleString()}`}
+                    label={`$${movie.revenue.toLocaleString()}`}
                 />
                 <Chip
-                    icon={<StarRate />}
-                    label={`${movie.vote_average} (${movie.vote_count}`}
+                    icon={<StarRate style={{ color: `${setVoteClass(movie.vote_average)}` }}/>}
+                    label={`Rating ${movie.vote_average}`}
+                />
+                <Chip
+                    icon={<StarRate style={{ color: `${setCountClass(movie.vote_count)}` }}/>}
+                    label={`Vote Count ${movie.vote_count}`}
                 />
                 <Chip label={`Released: ${movie.release_date}`} />
             </Paper>

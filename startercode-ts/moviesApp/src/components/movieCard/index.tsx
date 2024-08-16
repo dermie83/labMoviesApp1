@@ -10,7 +10,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddTaskIcon from '@mui/icons-material/AddTask';
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png';
@@ -22,6 +21,8 @@ const styles = {
   media: { height: 500 },
   favouriteAvatar: {
     backgroundColor: "rgb(255, 0, 0)",
+    width: 30, 
+    height: 30
   },
   mustWatchAvatar: {
     backgroundColor: "rgb(0, 200, 0)",
@@ -49,23 +50,25 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
   const { mustWatch } = useContext(SiteContext);
   const isMustWatch = mustWatch.find((id) => id === movie.id)? true : false;
 
-
   return (
 
     <Card sx={styles.card}>
+      <Grid container rowSpacing={1}>
+      <Grid item xs={12}>
       <CardHeader 
         title={
           <Typography variant="h5" component="p">
-            {movie.title}{" "}
+            {movie.title.substring(0, 8)}{"... "}
               </Typography>
         }
-        avatar={
-          isMustWatch ? (
-          <Avatar sx={styles.mustWatchAvatar}>
-            <AddTaskIcon fontSize="small"/>
-          </Avatar>) : null }
-      
+          avatar={
+            isFavourite ? (
+            <Avatar sx={styles.favouriteAvatar}>
+              <FavoriteIcon fontSize="small"/>
+            </Avatar>) : null }
         />
+        </Grid>
+        </Grid>
       <CardMedia
         sx={styles.media}
         image={
@@ -74,31 +77,17 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
             : img
         }
       />
-      <Grid >
-        <CardHeader
-          avatar={
-            isFavourite ? (
-            <Avatar sx={styles.favouriteAvatar}>
-              <FavoriteIcon fontSize="small"/>
-            </Avatar>) : null }
-        />
-      </Grid>
       <CardContent>
         <Grid container>
-          <Grid item xs={6}>
-            <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
-              {movie.release_date}
-            </Typography>
-          </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="large" style={{ color: `${setVoteClass(movie.vote_average)}` }}/>
-              {"  "} {movie.vote_average}
+              {"Rating: "} {movie.vote_average}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
+
       <CardActions disableSpacing>
       {action(movie)}
         <Link to={`/movies/${movie.id}`}>

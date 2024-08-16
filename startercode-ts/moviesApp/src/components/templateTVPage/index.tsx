@@ -12,7 +12,7 @@ const styles = {
         justifyContent: "space-around",
     },
     gridListTile: {
-        width: 450,
+        width: 750,
         height: '100vh',
     },
 };
@@ -29,8 +29,8 @@ const TemplateTVPage: React.FC<TemplateTVPageProps> = ({tvShow, children}) => {
         <>
             <TVShowHeader {...tvShow} />
 
-            <Grid container spacing={1} style={{ padding: "15px" }}>
-                <Grid item xs={5}>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid item xs={8} md={6}>
                 <ImageListItem
                             key={tvShow.backdrop_path}
                             sx={styles.gridListTile}
@@ -38,11 +38,11 @@ const TemplateTVPage: React.FC<TemplateTVPageProps> = ({tvShow, children}) => {
                             >
                             <img
                                 src={`https://image.tmdb.org/t/p/w500/${tvShow.backdrop_path}`}
-                                alt={'Image alternative'}
+                                alt={'../../images/film-poster-placeholder.png'}
                             />
                         </ImageListItem>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={4} md={6}>
                     {children}
                 </Grid>
             </Grid>

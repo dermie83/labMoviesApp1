@@ -119,6 +119,7 @@ export interface BaseCastMembersProps {
     deathday: string;
     biography:string,
     homepage: string,
+    place_of_birth: string;
 }
 
   export interface GenreData {
