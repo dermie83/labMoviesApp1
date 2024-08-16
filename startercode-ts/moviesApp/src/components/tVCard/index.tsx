@@ -9,8 +9,8 @@ import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AddTaskIcon from '@mui/icons-material/AddTask';
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png';
 import Avatar from "@mui/material/Avatar";
@@ -44,6 +44,8 @@ const setVoteClass = (vote: number) => {
 
 const TVCard: React.FC<TVCardProps> = ({tvShow, action}) => {
   
+  const { favouriteTV } = useContext(SiteContext);
+  const isFavouriteTV = favouriteTV.find((id) => id === tvShow.id)? true : false;
   const { mustWatchTV } = useContext(SiteContext);
   const isMustWatchTV = mustWatchTV.find((id) => id === tvShow.id)? true : false;
 
@@ -62,7 +64,7 @@ const TVCard: React.FC<TVCardProps> = ({tvShow, action}) => {
               <CardHeader
                title={
                 <Typography variant="h5" component="p">
-                  {tvShow.name}{" "}
+                  {tvShow.name.substring(0, 8)}{" "}
                     </Typography>
               }
                 avatar={
@@ -75,10 +77,14 @@ const TVCard: React.FC<TVCardProps> = ({tvShow, action}) => {
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
-            <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
-              {tvShow.first_air_date}
-            </Typography>
+            <CardHeader
+              avatar={
+              isFavouriteTV ? (
+              <Avatar sx={styles.favouriteAvatar}>
+                <FavoriteIcon fontSize="small"/>
+            </Avatar>) : null}
+          
+          />
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
@@ -87,6 +93,7 @@ const TVCard: React.FC<TVCardProps> = ({tvShow, action}) => {
             </Typography>
           </Grid>
         </Grid>
+        
       </CardContent>
       <CardActions disableSpacing>
       {action(tvShow)}

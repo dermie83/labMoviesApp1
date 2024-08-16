@@ -5,18 +5,6 @@ import { BaseCastMembersProps } from "../../types/interfaces";
 import { ImageListItem } from "@mui/material";
 
 
-const styles = {
-    gridListRoot: {
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-    },
-    gridListTile: {
-        width: 330,
-        height: '100vh',
-    },
-};
-
 interface TemplateCastPageProps {
     cast: BaseCastMembersProps;
     children: React.ReactElement;
@@ -29,12 +17,11 @@ const TemplateCastPage: React.FC<TemplateCastPageProps> = ({cast, children}) => 
         <>
             <CastHeader {...cast} />
 
-            <Grid container spacing={5} style={{ padding: "15px" }}>
-                <Grid item xs={3}>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 3, md: 3 }}>
+                <Grid item xs={4} md={4}>
                     <div>
                         <ImageListItem
                             key={cast.profile_path}
-                            sx={styles.gridListTile}
                             cols={1}
                             >
                             <img
@@ -44,7 +31,7 @@ const TemplateCastPage: React.FC<TemplateCastPageProps> = ({cast, children}) => 
                         </ImageListItem>
                     </div>
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={8} md={8}>
                     {children}
                 </Grid>
             </Grid>

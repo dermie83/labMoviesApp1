@@ -17,6 +17,7 @@ import PopularPersonsPage from "./pages/castPage";
 import CastDetailsPage from "./pages/castDetailsPage";
 import TrendingTVPage from "./pages/trendingTVPage";
 import MustWatchTrendingTVPage from "./pages/mustWatchTVPage";
+import FavouriteTVPage from "./pages/favouriteTVPage";
 import TVHomePage from "./pages/tvHomePage";
 import TVPage from "./pages/tvShowDetailsPage";
 
@@ -45,6 +46,7 @@ const App = () => {
               <Route path="/movies/popular" element={<PopularMoviesPage />} />
               <Route path="/cast" element={<PopularPersonsPage />} />
               <Route path="/tv" element={<TVHomePage />} />
+              <Route path="/tv/favourites" element={<FavouriteTVPage />} />
               <Route path="/tv/trendingNow" element={<TrendingTVPage />} />
               <Route path="/tv/mustwatch" element={<MustWatchTrendingTVPage />} />
               <Route path="/tv/:id" element={<TVPage />} />

@@ -9,7 +9,7 @@ import TVFilterUI, {
 import { BaseTVProps, DiscoverTV } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-import AddToMustWatchTV from "../components/cardIcons/addToMustWatchTV";
+import AddToFavouritesIcon from "../components/cardIcons/addToFavouriteTV";
 import { Grid } from "@mui/material";
 
 
@@ -78,10 +78,10 @@ const TVHomePage: React.FC = () => {
       </div>
     </Grid>
       <PageTemplate
-        title="TV SHOWS"
+        title="Discover TV"
         tvShow={displayTvShows}
-        action={(tV: BaseTVProps) => {
-          return <AddToMustWatchTV {...tV} />
+        action={(tvShow: BaseTVProps) => {
+          return <AddToFavouritesIcon {...tvShow} />
         }}
       />
       <TVFilterUI

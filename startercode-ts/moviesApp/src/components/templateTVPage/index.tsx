@@ -5,18 +5,6 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { TVDetailsProps } from "../../types/interfaces";
 
 
-const styles = {
-    gridListRoot: {
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-    },
-    gridListTile: {
-        width: 750,
-        height: '100vh',
-    },
-};
-
 interface TemplateTVPageProps {
     tvShow: TVDetailsProps;
     children: React.ReactElement;
@@ -29,11 +17,10 @@ const TemplateTVPage: React.FC<TemplateTVPageProps> = ({tvShow, children}) => {
         <>
             <TVShowHeader {...tvShow} />
 
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 3, md: 4 }}>
                 <Grid item xs={8} md={6}>
                 <ImageListItem
                             key={tvShow.backdrop_path}
-                            sx={styles.gridListTile}
                             cols={1}
                             >
                             <img

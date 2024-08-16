@@ -33,6 +33,11 @@ const MovieHeader: React.FC<HeaderProps> = (headerProps) => {
                     Discover TV
                 </Button>
                 </Link>
+                <Link to="/tv/favourites">
+                <Button variant="outlined" size="medium" color="primary">
+                    My Favourites
+                </Button>
+                </Link>
                 <Link to="/tv/trendingNow">
                 <Button variant="outlined" size="medium" color="primary">
                     Trending Now...

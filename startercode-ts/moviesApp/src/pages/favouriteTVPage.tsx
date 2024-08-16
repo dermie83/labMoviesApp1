@@ -1,16 +1,15 @@
 import React, { useContext } from "react"
-import PageTemplate from "../components/templateMovieListPage";
+import PageTemplate from "../components/templateTVListPage";
 import { SiteContext } from "../contexts/siteContext";
 import { useQueries } from "react-query";
-import { getMovie } from "../api/tmdb-api";
+import { getTVShow } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
-import MovieFilterUI, {
+import TVFilterUI, {
   titleFilter,
   genreFilter,
-} from "../components/movieFilterUI";
-import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites";
-import WriteReview from "../components/cardIcons/writeReview";
+} from "../components/tVFilterUI";
+import RemoveFromFavouriteTV from "../components/cardIcons/removeFromFavouriteTV";
 
 const titleFiltering = {
   name: "title",
@@ -23,31 +22,31 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const FavouriteMoviesPage: React.FC = () => {
-  const { favourites: movieIds } = useContext(SiteContext);
+const FavouriteTVPage: React.FC = () => {
+  const { favouriteTV: tvShowIds } = useContext(SiteContext);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );
 
   // Create an array of queries and run them in parallel.
-  const favouriteMovieQueries = useQueries(
-    movieIds.map((movieId) => {
+  const favouriteTVQueries = useQueries(
+    tvShowIds.map((tvShowId) => {
       return {
-        queryKey: ["/movies/favourites", movieId],
-        queryFn: () => getMovie(movieId.toString()),
+        queryKey: ["/tv/favourites", tvShowId],
+        queryFn: () => getTVShow(tvShowId.toString()),
       };
     })
   );
 
   // Check if any of the parallel queries is still loading.
-  const isLoading = favouriteMovieQueries.find((m) => m.isLoading === true);
+  const isLoading = favouriteTVQueries.find((m) => m.isLoading === true);
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  const allFavourites = favouriteMovieQueries.map((q) => q.data);
-  const displayedMovies = allFavourites
+  const allFavourites = favouriteTVQueries.map((q) => q.data);
+  const displayedTVShows = allFavourites
     ? filterFunction(allFavourites)
     : [];
 
@@ -61,18 +60,17 @@ const FavouriteMoviesPage: React.FC = () => {
   return (
     <>
       <PageTemplate
-        title="Favourite Movies"
-        movies={displayedMovies}
-        action={(movie) => {
+        title="Favourite TV Shows"
+        tvShow={displayedTVShows}
+        action={(tvShow) => {
           return (
             <>
-              <RemoveFromFavourites {...movie} />
-              <WriteReview {...movie} />
+              <RemoveFromFavouriteTV {...tvShow} />
             </>
           );
         }}
       />
-      <MovieFilterUI
+      <TVFilterUI
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
@@ -81,4 +79,4 @@ const FavouriteMoviesPage: React.FC = () => {
   );
 };
 
-export default FavouriteMoviesPage;
+export default FavouriteTVPage;

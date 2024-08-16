@@ -176,4 +176,5 @@ export interface BaseCastMembersProps {
     vote_count: number;
     origin_country: string[];
     must_watch?: boolean;
+    favourite?: boolean;
   }

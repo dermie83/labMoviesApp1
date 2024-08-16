@@ -52,23 +52,7 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
 
   return (
 
-    <Card sx={styles.card}>
-      <Grid container rowSpacing={1}>
-      <Grid item xs={12}>
-      <CardHeader 
-        title={
-          <Typography variant="h5" component="p">
-            {movie.title.substring(0, 8)}{"... "}
-              </Typography>
-        }
-          avatar={
-            isFavourite ? (
-            <Avatar sx={styles.favouriteAvatar}>
-              <FavoriteIcon fontSize="small"/>
-            </Avatar>) : null }
-        />
-        </Grid>
-        </Grid>
+    <Card>
       <CardMedia
         sx={styles.media}
         image={
@@ -87,9 +71,28 @@ const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
           </Grid>
         </Grid>
       </CardContent>
+      <CardHeader
+        avatar={
+          isFavourite ? (
+          <Avatar sx={styles.favouriteAvatar}>
+            <FavoriteIcon fontSize="small"/>
+          </Avatar>) : null}
+          title={
+            <Typography variant="h5" component="p">
+              {movie.title.substring(0, 8)}{" "}
+                </Typography>
+          }
 
+      />
+      <CardHeader
+        avatar={
+          isMustWatch ? (
+          <Avatar sx={styles.mustWatchAvatar}>
+            <AddTaskIcon fontSize="small"/>
+          </Avatar>) : null}
+      />
       <CardActions disableSpacing>
-      {action(movie)}
+        {action(movie)}
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...

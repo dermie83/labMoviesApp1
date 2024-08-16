@@ -19,8 +19,6 @@ const TVShowHeader: React.FC<TVDetailsProps> = (tvShow) => {
     <Paper component="div" sx={styles.root}>
       <Typography variant="h4" component="h3">
         {tvShow.name}{"   "}
-        {/* <br />
-        <span>{`${tvShow.tagline}`} </span> */}
       </Typography>
     </Paper>
   );

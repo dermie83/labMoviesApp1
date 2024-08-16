@@ -10,9 +10,12 @@ interface MovieContextInterface {
     mustWatch: number[];
     addToMustWatch: ((movie: BaseMovieProps) => void);
     removeFromMustWatch: ((movie: BaseMovieProps) => void);
+    favouriteTV: number[];
+    addToFavouriteTV: ((tvShow: BaseTVProps) => void);
+    removeFromFavouriteTV: ((tvShow: BaseTVProps) => void);
     mustWatchTV: number[];
-    addToMustWatchTV: ((tV: BaseTVProps) => void);
-    removeFromMustWatchTV: ((tV: BaseTVProps) => void);
+    addToMustWatchTV: ((tvShow: BaseTVProps) => void);
+    removeFromMustWatchTV: ((tvShow: BaseTVProps) => void);
 }
 const initialContextState: MovieContextInterface = {
     favourites: [],
@@ -22,6 +25,9 @@ const initialContextState: MovieContextInterface = {
     mustWatch: [],
     addToMustWatch: () => { },
     removeFromMustWatch: () => { },
+    favouriteTV: [],
+    addToFavouriteTV: () => { },
+    removeFromFavouriteTV: () => { },
     mustWatchTV: [],
     addToMustWatchTV: () => { },
     removeFromMustWatchTV: () => { },
@@ -33,6 +39,7 @@ const SiteContextProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
     const [favourites, setFavourites] = useState<number[]>([]);
     const [myReviews, setMyReviews] = useState<Review[]>([]);
     const [mustWatch, setMustWatch] = useState<number[]>([]);
+    const [favouriteTV, setFavouriteTV] = useState<number[]>([]);
     const [mustWatchTV, setMustWatchTV] = useState<number[]>([]);
 
     const addToFavourites = useCallback((movie: BaseMovieProps) => {
@@ -53,10 +60,19 @@ const SiteContextProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
         });
     }, []);
 
-    const addToMustWatchTV = useCallback((tV: BaseTVProps) => {
+    const addToFavouriteTV = useCallback((tvShow: BaseTVProps) => {
+        setFavouriteTV((prevFavourite) => {
+            if (!prevFavourite.includes(tvShow.id)) {
+                return [...prevFavourite, tvShow.id];
+            }
+            return prevFavourite;
+        });
+    }, []);
+
+    const addToMustWatchTV = useCallback((tvShow: BaseTVProps) => {
         setMustWatchTV((prevMustWatch) => {
-            if (!prevMustWatch.includes(tV.id)) {
-                return [...prevMustWatch, tV.id];
+            if (!prevMustWatch.includes(tvShow.id)) {
+                return [...prevMustWatch, tvShow.id];
             }
             return prevMustWatch;
         });
@@ -74,8 +90,12 @@ const SiteContextProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
         setMustWatch((prevMustWatch) => prevMustWatch.filter((mId) => mId !== movie.id));
     }, []);
 
-    const removeFromMustWatchTV = useCallback((tV: BaseTVProps) => {
-        setMustWatch((prevMustWatch) => prevMustWatch.filter((tvId) => tvId !== tV.id));
+    const removeFromFavouriteTV = useCallback((tvShow: BaseTVProps) => {
+        setFavouriteTV((prevFavouriteTV) => prevFavouriteTV.filter((tvId) => tvId !== tvShow.id));
+    }, []);
+
+    const removeFromMustWatchTV = useCallback((tvShow: BaseTVProps) => {
+        setMustWatch((prevMustWatch) => prevMustWatch.filter((tvId) => tvId !== tvShow.id));
     }, []);
 
     
@@ -91,6 +111,9 @@ const SiteContextProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
                 mustWatch,
                 addToMustWatch,
                 removeFromMustWatch,
+                favouriteTV,
+                addToFavouriteTV,
+                removeFromFavouriteTV,
                 mustWatchTV,
                 addToMustWatchTV,
                 removeFromMustWatchTV,

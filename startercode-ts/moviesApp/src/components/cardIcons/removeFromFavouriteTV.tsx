@@ -4,22 +4,22 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { SiteContext } from "../../contexts/siteContext";
 import {BaseTVProps} from "../../types/interfaces";
 
-const RemoveFromPlaylistIcon: React.FC<BaseTVProps> = (tvShow) => {
+const RemoveFromFavouritesIcon: React.FC<BaseTVProps> = (tvShow) => {
   const context = useContext(SiteContext);
 
   const onUserRequest = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    context.removeFromMustWatchTV(tvShow);
+    context.removeFromFavouriteTV(tvShow);
   };
 
 return (
   <IconButton
-    aria-label="remove from must watch"
+    aria-label="remove from favorites"
     onClick={onUserRequest}
   >
-    <DeleteIcon color="warning" fontSize="large" />
+    <DeleteIcon color="primary" fontSize="large" />
   </IconButton>
 );
 };
 
-export default RemoveFromPlaylistIcon;
+export default RemoveFromFavouritesIcon;
