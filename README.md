@@ -29,4 +29,4 @@ Tools React Js MUI React Router react-query storybook - This was used initially 
 
 Installation If you want to install this project locally:
 
-Clone the repo: git clone https://github.com/dermie83/labMoviesApp.git Change directory: cd react-movie-db Install packages: npm install Launch project: npm run dev Author Email - 20104123@mail.wit.ie
+Clone the repo: git clone https://github.com/dermie83/labMoviesApp.git Change directory: cd into folder Install packages: npm install Launch project: npm run dev Author Email - 20104123@mail.wit.ie
