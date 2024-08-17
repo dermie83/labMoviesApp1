@@ -77,10 +77,10 @@ const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
                         <Chip label={g.name} />
                     </li>
                 ))}
-                <a href={movie.homepage}>
+                <a href={movie.homepage} target="_blank">
                     <MovieIcon color="info"  fontSize="large"/>
                 </a>
-                <a href = {`https://www.youtube.com/watch?v=${movie.videos.results[0].key}`}>
+                <a href = {`https://www.youtube.com/watch?v=${movie.videos.results[0].key}`} target="_blank">
                     <MovieIcon color="info"  fontSize="large"/>
                 </a>
             </Paper>
